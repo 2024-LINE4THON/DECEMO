@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>캘린더</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        .calendar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .calendar-row {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+    <script>
+        function showAlert() {
+            alert("해당 날짜는 이미 답변을 작성했습니다.");
+        }
+    </script>
+</head>
+<body>
+    <h1>12월 캘린더</h1>
+    <div class="calendar-container">
+        {% for row in rows %}
+            <div class="calendar-row">
+                {% for day in row %}
+                    {% if day in answered_days %}
+                        <a href="javascript:void(0);" onclick="showAlert()" class="calendar-day">{{ day }}</a>
+                    {% else %}
+                        <a href="{% url 'question_detail' day %}" class="calendar-day">{{ day }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
