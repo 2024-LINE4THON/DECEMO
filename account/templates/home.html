@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홈</title>
+    <script>
+        let isPlaying = {{ isPlaying|yesno:"true,false" }};
+        let audio = new Audio("{% static 'audio/bgm.mp3' %}");
+        audio.loop = true;
+
+        window.onload = function() {
+            if (isPlaying) {
+                audio.play(); // 페이지 로드 시 음악 자동 재생
+            }
+        };
+
+        function toggleBGM() {
+            fetch("{% url 'toggle_bgm' %}").then(() => {
+                isPlaying = !isPlaying;
+                if (isPlaying) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+                updateButton();
+            });
+        }
+
+        function updateButton() {
+            const button = document.getElementById('bgmButton');
+            button.textContent = isPlaying ? "BGM OFF" : "BGM ON"; // 버튼 텍스트 변경
+        }
+    </script>
+</head>
+<body>
+    <h1>홈</h1>
+    <button id="bgmButton" onclick="toggleBGM()">{{ isPlaying|yesno:"BGM OFF,BGM ON" }}</button>
+    <a href="{% url 'logout' %}"><button>로그아웃</button></a>
+    <a href="{% url 'test' %}"><button>BGM 재생 테스트 페이지</button></a>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#check-username').click(function() {
+            const username = $('#id_username').val();
+            $.ajax({
+                url: '{% url "check_username" %}',
+                data: {
+                    'username': username
+                },
+                dataType: 'json',
+                success: function(data) {
+                    if (data.is_taken) {
+                        $('#username-check-msg').text('이미 존재하는 아이디입니다.');
+                    } else {
+                        $('#username-check-msg').text('사용 가능한 아이디입니다.');
+                    }
+                }
+            });
+        });
+    });
+</script>
+<body>
+    <div class="container">
+        <h1>회원가입</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.username.label_tag }} {{ form.username }} 
+            <button type="button" id="check-username" class="button">중복 확인</button>
+            <div id="username-check-msg"></div>
+            <br><br>
+            {{ form.password.label_tag }} {{ form.password }}<br><br>
+            {{ form.password_confirm.label_tag }} {{ form.password_confirm }}<br><br>
+            <button type="submit" class="button">회원가입</button>
+        </form>
+        <div style="color: red; margin-top: 10px;">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
