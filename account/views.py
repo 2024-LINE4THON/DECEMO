@@ -47,18 +47,13 @@ def logout(request):
 def index(request):
     return render(request, 'index.html')
 
-def test(request):
-    return render(request, 'test.html')
-
 @login_required
 def home(request):
-    # BGM 상태를 세션에서 읽어오기
-    is_playing = request.session.get('bgm_playing', True)  # 기본값을 True로 설정
+    is_playing = request.session.get('bgm_playing', True)  # 기본값 True로 설정
     return render(request, 'home.html', {'isPlaying': is_playing})
 
 @login_required
 def toggle_bgm(request):
-    # BGM 상태 토글
     current_state = request.session.get('bgm_playing', True)
-    request.session['bgm_playing'] = not current_state  # 현재 상태 반전
-    return redirect('home')  # 홈으로 리다이렉트
+    request.session['bgm_playing'] = not current_state 
+    return redirect('home')
