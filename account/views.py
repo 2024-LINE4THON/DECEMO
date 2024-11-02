@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from .forms import SignUpForm, LoginForm
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
+from question.models import Answer
 
 def signup(request):
     if request.method == 'POST':
@@ -49,8 +51,27 @@ def index(request):
 
 @login_required
 def home(request):
+    # 임의로 현재 날짜를 2024년 12월 3일로 설정
+    today = datetime(2024, 12, 3)
+    target_date = datetime(2025, 1, 1)
+    d_day = (target_date - today).days  # 남은 일수 계산
+    
     is_playing = request.session.get('bgm_playing', True)  # 기본값 True로 설정
-    return render(request, 'home.html', {'isPlaying': is_playing})
+
+    # 사용자가 작성한 답변 개수
+    total_questions = 31
+    answered_count = Answer.objects.filter(user=request.user, question__date__month=12).count()
+    progress_percentage = (answered_count / total_questions) * 100
+
+    return render(request, 'home.html', {
+        'isPlaying': is_playing,
+        'today': today,
+        'd_day': d_day,
+        'answered_count': answered_count,
+        'total_questions': total_questions,
+        'progress_percentage': progress_percentage,
+        'username': request.user.username  # 사용자 이름 전달
+    })
 
 @login_required
 def toggle_bgm(request):
