@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>질문 상세</title>
+</head>
+<body>
+    <h1>{{ question.date|date:"Y년 n월 j일" }}의 질문</h1>
+    <p>{{ question.text }}</p>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.response }}  <!-- Response 레이블 없이 답변 필드만 표시 -->
+            <button type="submit">저장</button>
+        </form>
+    {% endif %}
+
+    <a href="{% url 'calendar' %}">캘린더로 돌아가기</a> <!--임의로 작성했습니다!!-->
+</body>
+</html>

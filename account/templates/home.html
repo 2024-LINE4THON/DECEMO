@@ -30,13 +30,65 @@
 
         function updateButton() {
             const button = document.getElementById('bgmButton');
-            button.textContent = isPlaying ? "BGM OFF" : "BGM ON"; // 버튼 텍스트 변경
+            button.textContent = isPlaying ? "BGM OFF" : "BGM ON";
         }
     </script>
+    <style>
+        .date-text, .d-day-text {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .bell-image {
+            width: 100px;
+            height: auto;
+            margin-top: 20px;
+        }
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .progress-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .progress-bar {
+            width: 80%;
+            height: 25px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px auto;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #FFD739;
+            width: {{ progress_percentage }}%;
+        }
+    </style>
 </head>
 <body>
     <h1>홈</h1>
-    <button id="bgmButton" onclick="toggleBGM()">{{ isPlaying|yesno:"BGM OFF,BGM ON" }}</button>
-    <a href="{% url 'logout' %}"><button>로그아웃</button></a>
+    <p class="date-text">{{ today|date:"Y년 m월 d일" }}</p>
+    <p class="d-day-text">D-{{ d_day }}</p>
+    
+    <a href="{% url 'question_detail' today.day %}">
+        <img src="{% static 'images/bell_main.png' %}" alt="벨 이미지" class="bell-image">
+    </a>
+
+    <div class="progress-container">
+        <p>{{ username }}님의 진행률</p>
+        <div class="progress-bar">
+            <div class="progress-bar-fill"></div>
+        </div>
+        <p>총 {{ total_questions }}일 중 {{ answered_count }}일 작성했어요!</p>
+    </div>
+
+    <div class="button-container">
+        <button id="bgmButton" onclick="toggleBGM()">{{ isPlaying|yesno:"BGM OFF,BGM ON" }}</button>
+        <a href="{% url 'logout' %}"><button>로그아웃</button></a>
+        <a href="{% url 'calendar' %}"><button>캘린더</button></a>
+    </div>
 </body>
 </html>
