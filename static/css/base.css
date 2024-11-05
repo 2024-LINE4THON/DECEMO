@@ -22,7 +22,6 @@
     --nav-inactive-color: #2A2A2A;
 }
 
-/* content-container에 navbar 공간 확보 */
 .content-container {
     padding-bottom: var(--nav-height);
 }
@@ -49,7 +48,8 @@ body {
     background-size: 100% 100%;
     background-position: center top;
     background-repeat: no-repeat;
-    overflow-x: hidden;
+    overflow: hidden;
+    position: relative;
 }
 
 .background-animations {

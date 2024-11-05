@@ -43,7 +43,18 @@
         {% endif %}
     </div>
 
-    <script src="{% static 'js/animations/background.js' %}" type="text/javascript"></script>
+    <script>    document.addEventListener('DOMContentLoaded', function() {
+        const snowContainer = document.getElementById('snow');
+        const flakeCount = 10000;  // 눈송이 수
+
+        if (snowContainer) {
+            for (let i = 0; i < flakeCount; i++) {
+                const flake = document.createElement('div');
+                flake.className = 'flake';
+                snowContainer.appendChild(flake);
+            }
+        }
+    });</script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>
