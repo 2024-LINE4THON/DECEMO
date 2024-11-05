@@ -4,6 +4,7 @@
     --container-bg: #ffffff;
     --snow-color: #ffffff;
     --smoke-color: #e0e0e0;
+    --yellow: #FFD52B;
     
     /* 레이아웃 */
     --container-width: 320px;
@@ -14,6 +15,16 @@
     --z-background: 1;
     --z-animations: 10;
     --z-content: 20;
+
+    --nav-height: 83.5px;
+    --z-navbar: 30;
+    --nav-active-color: #FFD52B;
+    --nav-inactive-color: #2A2A2A;
+}
+
+/* content-container에 navbar 공간 확보 */
+.content-container {
+    padding-bottom: var(--nav-height);
 }
 
 body {
