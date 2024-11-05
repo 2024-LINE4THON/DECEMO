@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/animations/snow.css' %}">
     <link rel="stylesheet" href="{% static 'css/animations/smoke.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -38,10 +39,22 @@
         </div>
 
     </div>
+    <div class="nav-box">
+        <div class="icon-box">
+            <div class="home-icon active">
+                <img src="{% static 'assets/img/home-ON.png' %}" alt="홈" class="icon-img">
+                <div style="color: #FFD52B;">홈</div>
+            </div>
+            <div class="date-icon">
+                <img src="{% static 'assets/img/date-OFF.png' %}" alt="날짜" class="icon-img">
+                <div>캘린더</div>
+            </div>
+        </div>
+    </div>
 
         <!-- 네비게이션 바 항상 포함 -->
         <!-- {% if user.is_authenticated and not hide_navbar %} -->
-        {% include 'navbar.html' %}
+        <!-- {% include 'navbar.html' %} -->
         <!-- {% endif %} -->
 
     <script>    document.addEventListener('DOMContentLoaded', function() {

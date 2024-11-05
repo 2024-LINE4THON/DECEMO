@@ -6,11 +6,9 @@
     --smoke-color: #e0e0e0;
     --yellow: #FFD52B;
     
-    /* 레이아웃 */
     --container-width: 320px;
-    --container-min-width: 300px;
-    --container-padding: 20px;
-    
+    --container-min-width: 320px;
+
     /* Z-index */
     --z-background: 1;
     --z-animations: 10;
@@ -58,7 +56,6 @@ body {
 }
 
 .content-container {
-    padding: var(--container-padding);
     box-sizing: border-box;
     z-index: var(--z-content);
     width: 100%;
