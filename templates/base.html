@@ -13,7 +13,7 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <div class="page-container">
+    <div class="page-container {% if user.is_authenticated %}logged-in{% endif %}">
         <!-- 배경 애니메이션 -->
         <div class="snow" id="snow"></div>
         <div class="smoke-container">

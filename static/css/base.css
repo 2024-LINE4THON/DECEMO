@@ -22,27 +22,22 @@
     --nav-inactive-color: #2A2A2A;
 }
 
-.content-container {
-    padding-bottom: var(--nav-height);
-}
-
 body {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     overflow-x: hidden;
     background-color: var(--main-bg);
     display: flex;
     justify-content: center;
+    align-items: center; /* 수직 중앙 정렬 추가 */
 }
 
 .page-container {
-    position: relative;
     max-width: var(--container-width);
     width: 100%;
-    height: 100vh;
-    margin: 0 auto;
+    height: 642px; /* 기본 높이 */
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
     background-image: url('/static/assets/img/background.png');
     background-size: 100% 100%;
@@ -50,25 +45,24 @@ body {
     background-repeat: no-repeat;
     overflow: hidden;
     position: relative;
+
+    /* 로그인 여부에 따른 중앙 정렬 조정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.background-animations {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: var(--z-animations);
-    pointer-events: none;
+.page-container.with-navbar {
+    margin-top: calc(var(--nav-height) / 2); /* 네비게이션 바 높이에 따라 중앙 정렬 조정 */
 }
 
 .content-container {
-    position: relative;
+    padding: var(--container-padding);
+    box-sizing: border-box;
     z-index: var(--z-content);
     width: 100%;
     height: 100%;
-    padding: var(--container-padding);
-    box-sizing: border-box;
 }
 
 @media (max-width: 320px) {
