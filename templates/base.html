@@ -1,15 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/base.css">
-    <link rel="stylesheet" href="/static/css/animations/snow.css">
-    <link rel="stylesheet" href="/static/css/animations/smoke.css">
+    <title>{% block title %}{% endblock %}</title>
+    
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animations/snow.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animations/smoke.css' %}">
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     <div class="page-container">
-        <!-- 배경 애니메이션 레이어 -->
+        <!-- 배경 애니메이션 -->
         <div class="background-animations">
             <div class="snow" id="snow"></div>
             <div class="smoke-container">
@@ -26,11 +31,20 @@
             </div>
         </div>
 
-        <!-- 실제 콘텐츠를 위한 컨테이너 -->
+        <!-- 실제 콘텐츠 -->
         <div class="content-container">
+            {% block content %}
+            {% endblock %}
         </div>
+
+        <!-- 네비게이션 바 (로그인된 사용자만) -->
+        {% if user.is_authenticated and not hide_navbar %}
+            {% include 'components/nav_bar.html' %}
+        {% endif %}
     </div>
 
-    <script src="/static/js/animations/background.js"></script>
+    <!-- 공통 JavaScript -->
+    <script src="{% static 'js/animations/background.js' %}"></script>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>

@@ -1,25 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-</head>
-<body>
-    <div class="container">
-        <h1>로그인</h1>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="button">로그인</button>
-        </form>
-        <!-- <div style="color: red; margin-top: 10px;">
-            {% for field in form %}
-                {% for error in field.errors %}
-                    <p>{{ error }}</p>
-                {% endfor %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}로그인{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>로그인</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button">로그인</button>
+    </form>
+    <!-- <div style="color: red; margin-top: 10px;">
+        {% for field in form %}
+            {% for error in field.errors %}
+                <p>{{ error }}</p>
             {% endfor %}
-        </div> -->
-    </div>
-</body>
-</html>
+        {% endfor %}
+    </div> -->
+</div>
+{% endblock %}
