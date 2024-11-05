@@ -1,0 +1,68 @@
+:root {
+    /* 색상 */
+    --main-bg: #818181;
+    --container-bg: #ffffff;
+    --snow-color: #ffffff;
+    --smoke-color: #e0e0e0;
+    
+    /* 레이아웃 */
+    --container-width: 320px;
+    --container-min-width: 300px;
+    --container-padding: 20px;
+    
+    /* Z-index */
+    --z-background: 1;
+    --z-animations: 10;
+    --z-content: 20;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: var(--main-bg);
+    display: flex;
+    justify-content: center;
+}
+
+.page-container {
+    position: relative;
+    max-width: var(--container-width);
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+    background-image: url('/static/assets/img/background.png');
+    background-size: 100% 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+}
+
+.background-animations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-animations);
+    pointer-events: none;
+}
+
+.content-container {
+    position: relative;
+    z-index: var(--z-content);
+    width: 100%;
+    height: 100%;
+    padding: var(--container-padding);
+    box-sizing: border-box;
+}
+
+@media (max-width: 320px) {
+    .page-container {
+        width: 100%;
+        min-width: var(--container-min-width);
+    }
+}
