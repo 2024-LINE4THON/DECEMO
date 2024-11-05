@@ -1,0 +1,19 @@
+.smoke-container {
+    position: fixed;
+    bottom: calc(18.5% - 30px);
+    left: 50%;
+    transform: translate(88%, -10%);
+    width: 100px;
+    height: 100px;
+    z-index: var(--z-animations);
+}
+
+.chimney-smoke {
+    animation: smoke 3s infinite ease-out;
+    background: var(--smoke-color);
+    filter: blur(3px);
+    height: 100%;
+    position: relative;
+    width: 100%;
+    border-radius: 50%;
+}

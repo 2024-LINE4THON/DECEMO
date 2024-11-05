@@ -1,0 +1,17 @@
+.snow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: var(--z-animations);
+}
+
+.flake {
+    position: absolute;
+    background: var(--snow-color);
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: fall linear infinite;
+}
