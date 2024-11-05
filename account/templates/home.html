@@ -7,7 +7,7 @@
     <title>홈</title>
     <script>
         let isPlaying = {{ isPlaying|yesno:"true,false" }};
-        let audio = new Audio("{% static 'audio/bgm.mp3' %}");
+        let audio = new Audio("{% static 'assets/audio/bgm.mp3' %}");
         audio.loop = true;
 
         window.onload = function() {
@@ -74,7 +74,7 @@
     <p class="d-day-text">D-{{ d_day }}</p>
     
     <a href="{% url 'question_detail' today.day %}">
-        <img src="{% static 'images/bell_main.png' %}" alt="벨 이미지" class="bell-image">
+        <img src="{% static 'assets/img/bell_main.png' %}" alt="벨 이미지" class="bell-image">  <!-- 수정된 이미지 경로 -->
     </a>
 
     <div class="progress-container">

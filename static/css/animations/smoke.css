@@ -1,0 +1,61 @@
+.smoke-container {
+    position: fixed;
+    bottom: calc(23% - 30px);
+    left: 50%;
+    transform: translate(88%, -10%);
+    width: 100px;
+    height: 100px;
+}
+
+#chimney-main {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#chimney-smoke-box {
+    height: 15px; 
+    left: 5px;
+    bottom: 100%;
+    position: absolute;
+    width: 15px; 
+}
+
+@keyframes smoke {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(0);  
+        border-radius: 50%;
+    }
+    10% {  
+        opacity: 0.7;
+    }
+    80% {
+        transform: translate3d(15px, -40px, 0px) rotate(15deg) skew(-20deg) scale(1.8);  /* 이동 거리와 회전 각도 조정 */
+        filter: blur(4px);
+        border-radius: 50%;
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(20px, -45px, 0px) rotate(20deg) skew(-25deg) scale(2);
+    }
+}
+
+.chimney-smoke {
+    animation: smoke 3s infinite ease-out; 
+    background: #e0e0e0;
+    background: repeating-linear-gradient(90deg, transparent 0%, #e0e0e0 50%);
+    filter: blur(3px);  
+    height: 100%;
+    position: relative;
+    width: 100%;
+    border-radius: 50%; 
+}
+
+
+#chimney-smoke2 {top: -15px; animation-delay: 0.4s;}
+#chimney-smoke3 {top: -30px; animation-delay: 0.8s;}
+#chimney-smoke4 {top: -45px; animation-delay: 1.2s;}
+#chimney-smoke5 {top: -60px; animation-delay: 1.6s;}
+#chimney-smoke6 {top: -75px; animation-delay: 2s;}

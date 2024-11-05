@@ -1,0 +1,70 @@
+:root {
+    /* 색상 */
+    --main-bg: #333333;
+    --container-bg: #ffffff;
+    --snow-color: #ffffff;
+    --smoke-color: #e0e0e0;
+    --yellow: #FFD52B;
+    
+    --container-width: 320px;
+    --container-min-width: 320px;
+
+    /* Z-index */
+    --z-background: 1;
+    --z-animations: 10;
+    --z-content: 20;
+
+    --nav-height: 83.5px;
+    --z-navbar: 30;
+    --nav-active-color: #FFD52B;
+    --nav-inactive-color: #2A2A2A;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--main-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 수직 중앙 정렬 추가 */
+}
+
+.page-container {
+    max-width: var(--container-width);
+    width: 100%;
+    height: 642px; /* 기본 높이 */
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+    background-image: url('/static/assets/img/background.png');
+    background-size: 100% 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    position: relative;
+
+    /* 로그인 여부에 따른 중앙 정렬 조정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-container.with-navbar {
+    margin-top: calc(var(--nav-height) / 2); /* 네비게이션 바 높이에 따라 중앙 정렬 조정 */
+}
+
+.content-container {
+    box-sizing: border-box;
+    z-index: var(--z-content);
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 320px) {
+    .page-container {
+        width: 100%;
+        min-width: var(--container-min-width);
+    }
+}

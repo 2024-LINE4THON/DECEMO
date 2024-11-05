@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'assets/css/navbar.css' %}">
+    </head>
+    <body>
+        <div class="nav-box">
+            <div class="icon-box">
+                <div class="home-icon active">
+                    <img src="{% static 'assets/img/home-ON.png' %}" alt="홈" class="icon-img">
+                    <div style="color: #FFD52B;">홈</div>
+                </div>
+                <div class="date-icon">
+                    <img src="{% static 'assets/img/date-OFF.png' %}" alt="날짜" class="icon-img">
+                    <div>캘린더</div>
+                </div>
+            </div>
+        </div>
+        <script>
+            // 클릭 이벤트 처리
+            document.querySelector('.home-icon').addEventListener('click', function() {
+                if(!this.classList.contains('active')) { // 이미 활성화 상태가 아닐 때만 실행
+                    const img = this.querySelector('img');
+                    const text = this.querySelector('div');
+                    const dateIcon = document.querySelector('.date-icon');
+                    const dateImg = dateIcon.querySelector('img');
+                    const dateText = dateIcon.querySelector('div');
+                    
+                    // 홈 아이콘 및 텍스트 활성화
+                    this.classList.add('active');
+                    img.src = '/static/assets/img/home-ON.png';
+                    text.style.color = '#FFD52B';
+                    
+                    // 데이트 아이콘 및 텍스트 비활성화
+                    dateIcon.classList.remove('active');
+                    dateImg.src = '/static/assets/img/date-OFF.png';
+                    dateText.style.color = '#2A2A2A';
+                }
+            });
+
+            document.querySelector('.date-icon').addEventListener('click', function() {
+                if(!this.classList.contains('active')) { // 이미 활성화 상태가 아닐 때만 실행
+                    const img = this.querySelector('img');
+                    const text = this.querySelector('div');
+                    const homeIcon = document.querySelector('.home-icon');
+                    const homeImg = homeIcon.querySelector('img');
+                    const homeText = homeIcon.querySelector('div');
+                    
+                    // 데이트 아이콘 및 텍스트 활성화
+                    this.classList.add('active');
+                    img.src = '/static/assets/img/date-ON.png';
+                    text.style.color = '#FFD52B';
+                    
+                    // 홈 아이콘 및 텍스트 비활성화
+                    homeIcon.classList.remove('active');
+                    homeImg.src = '/static/assets/img/home-OFF.png';
+                    homeText.style.color = '#2A2A2A';
+                }
+            });
+        </script>
+    </body>
+</html>
