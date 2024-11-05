@@ -39,7 +39,7 @@
 
         <!-- 네비게이션 바 (로그인된 사용자만) -->
         {% if user.is_authenticated and not hide_navbar %}
-            {% include 'components/nav_bar.html' %}
+            {% include 'components/navbar.html' %}
         {% endif %}
     </div>
 

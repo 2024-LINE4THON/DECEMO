@@ -1,8 +1,8 @@
 .smoke-container {
     position: fixed;
-    bottom: calc(18.5% - 30px);
+    bottom: calc(23% - 30px);
     left: 50%;
-    transform: translate(88%, -0%);
+    transform: translate(88%, -10%);
     width: 100px;
     height: 100px;
 }
