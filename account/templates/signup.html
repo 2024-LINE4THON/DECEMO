@@ -1,4 +1,6 @@
 {% extends 'base.html' %} {% load static %} {% block title %}회원가입{% endblock %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+<link rel="stylesheet" href="{% static 'css/signup.css' %}" />
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -15,7 +17,7 @@
           if (data.is_taken) {
             $("#username-check-msg").text("이미 존재하는 아이디입니다.");
           } else {
-            $("#username-check-msg").text("사용 가능한 아이디입니다.");
+            //$("#username-check-msg").text("사용 가능한 아이디입니다.");
           }
         },
       });
@@ -31,8 +33,11 @@
     </header>
     <form method="POST">
       {% csrf_token %}
-      <input id="id_username" name="username" type="text" placeholder="아이디를 입력해주세요" maxlength="20" required />
-      <button type="button" id="check-username" class="button">중복 확인</button>
+      <div class="id-check">
+        <input id="id_username" name="username" type="text" placeholder="아이디를 입력해주세요" maxlength="20" required />
+        <button type="button" id="check-username" class="button">중복 확인</button>
+      </div>
+
       <input id="id_password" name="password" type="password" placeholder="비밀번호를 입력해주세요" minlength="8" required />
       <p>*영문 / 숫자 포함 8글자 이상 입력해주세요</p>
       <input id="id_password_confirm" name="password_confirm" type="password" placeholder="비밀번호를 다시 입력해주세요" minlength="8" required />
