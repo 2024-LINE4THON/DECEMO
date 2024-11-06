@@ -14,7 +14,6 @@
     top: 0;
     left: 0;
     pointer-events: none;
-    z-index: 1;
 
     @for $i from 1 through $total {
         $random-x: random(1000000) * 0.0001vw;

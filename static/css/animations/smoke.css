@@ -5,8 +5,8 @@
     width: 100px;
     height: 100px;
     pointer-events: none;
-    z-index: var(--z-animations);
 }
+
 
 #chimney-main {
     position: absolute;
