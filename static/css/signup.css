@@ -18,7 +18,7 @@ p {
 
 #check-username {
   position: absolute;
-  bottom: 35px;
+  bottom: 8px;
   right: 2px;
   width: 62px;
   height: 22px;
@@ -27,7 +27,7 @@ p {
   color: #1a2d51;
   border: none;
   outline: none;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .password {
@@ -44,4 +44,53 @@ p {
   padding: 0;
   margin-bottom: 2vw;
   color: white;
+}
+
+/* modal 창 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(255, 255, 255, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 12%;
+  border-radius: 15px;
+  border: 1px solid #ffd739;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-content p,
+.pop_bt {
+  font-size: 12px;
+}
+
+.modal-content p {
+  margin-top: 20px;
+}
+
+.pop_div {
+  width: 108px;
+  height: 32px;
+  cursor: pointer;
+  background-color: #ffd739;
+  text-align: center;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }

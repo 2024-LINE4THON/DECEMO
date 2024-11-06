@@ -1,31 +1,28 @@
 {% extends 'base.html' %} {% load static %} {% block title %}회원가입{% endblock %} {% block content %}
 <link rel="stylesheet" href="{% static 'css/login.css' %}" />
 <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
-<script src="https://code.jquery.com/jquery-latest.js"></script>
 
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script src="{% static 'js/signup.js' %}" defer></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-  $(document).ready(function () {
-    $("#check-username").click(function () {
-      const username = $("#id_username").val();
-      $.ajax({
-        url: '{% url "check_username" %}',
-        data: {
-          username: username,
-        },
-        dataType: "json",
-        success: function (data) {
-          if (data.is_taken) {
-            $("#username-check-msg").text("이미 존재하는 아이디입니다.");
-          } else {
-            //$("#username-check-msg").text("사용 가능한 아이디입니다.");
-          }
-        },
-      });
-    });
-  });
+  var checkUsernameUrl = "{% url 'check_username' %}";
 </script>
+
 <body>
+  <!-- 모달 창 -->
+  <div class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <p style="font-size: 12px; color: black">중복되는 아이디입니다</p>
+      <div class="pop_div" onClick="close_pop();">
+        <span class="pop_bt" style="font-size: 12px"> 확인 </span>
+      </div>
+    </div>
+  </div>
+  <!-- 모달 창 -->
+
   <div class="container" style="width: 100%">
     <header>
       <div class="logo-div">
