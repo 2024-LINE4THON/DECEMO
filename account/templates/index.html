@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decemo</title>
-</head>
-<body>
-    <div class="container">
-        <h1>첫 화면</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-        <a href="{% url 'login' %}" class="button">로그인</a>
-        <a href="{% url 'signup' %}" class="button">회원가입</a>
-    </div>
-</body>
-</html>
+{% block title %}Decemo{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>첫 화면</h1>
+
+    <a href="{% url 'login' %}" class="button">로그인</a>
+    <a href="{% url 'signup' %}" class="button">회원가입</a>
+</div>
+{% endblock %}

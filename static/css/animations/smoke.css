@@ -1,10 +1,11 @@
 .smoke-container {
     position: fixed;
-    bottom: calc(23% - 30px);
     left: 50%;
     transform: translate(88%, -10%);
     width: 100px;
     height: 100px;
+    pointer-events: none;
+    z-index: var(--z-animations);
 }
 
 #chimney-main {

@@ -1,80 +1,85 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>홈</title>
-    <script>
-        let isPlaying = {{ isPlaying|yesno:"true,false" }};
-        let audio = new Audio("{% static 'assets/audio/bgm.mp3' %}");
-        audio.loop = true;
 
-        window.onload = function() {
-            if (isPlaying) {
-                audio.play(); // 페이지 로드 시 음악 자동 재생
-            }
-        };
+{% block title %}홈{% endblock %}
 
-        function toggleBGM() {
-            fetch("{% url 'toggle_bgm' %}").then(() => {
-                isPlaying = !isPlaying;
-                if (isPlaying) {
-                    audio.play();
-                } else {
-                    audio.pause();
-                }
-                updateButton();
-            });
-        }
+{% block extra_css %}
+<style>
+    .home-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+    }
 
-        function updateButton() {
-            const button = document.getElementById('bgmButton');
-            button.textContent = isPlaying ? "BGM OFF" : "BGM ON";
-        }
-    </script>
-    <style>
-        .date-text, .d-day-text {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        .bell-image {
-            width: 100px;
-            height: auto;
-            margin-top: 20px;
-        }
-        .button-container {
-            margin-top: 20px;
-            display: flex;
-            gap: 10px;
-        }
-        .progress-container {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .progress-bar {
-            width: 80%;
-            height: 25px;
-            background-color: #e0e0e0;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 10px auto;
-        }
-        .progress-bar-fill {
-            height: 100%;
-            background-color: #FFD739;
-            width: {{ progress_percentage }}%;
-        }
-    </style>
-</head>
-<body>
+    .date-text, .d-day-text {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .bell-image {
+        width: 100px;
+        height: auto;
+        margin-top: 20px;
+        display: block;
+    }
+
+    .progress-container {
+        width: 100%;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .progress-bar {
+        width: 80%;
+        height: 25px;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px auto;
+    }
+
+    .progress-bar-fill {
+        height: 100%;
+        background-color: #FFD739;
+        width: {{ progress_percentage }}%;
+    }
+
+    .button-container {
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    button {
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: none;
+        background-color: #FFD739;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #FFE169;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="home-container">
     <h1>홈</h1>
     <p class="date-text">{{ today|date:"Y년 m월 d일" }}</p>
     <p class="d-day-text">D-{{ d_day }}</p>
     
     <a href="{% url 'question_detail' today.day %}">
-        <img src="{% static 'assets/img/bell_main.png' %}" alt="벨 이미지" class="bell-image">  <!-- 수정된 이미지 경로 -->
+        <img src="{% static 'assets/img/bell_main.png' %}" alt="벨 이미지" class="bell-image">
     </a>
 
     <div class="progress-container">
@@ -90,5 +95,36 @@
         <a href="{% url 'logout' %}"><button>로그아웃</button></a>
         <a href="{% url 'calendar' %}"><button>캘린더</button></a>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let isPlaying = {{ isPlaying|yesno:"true,false" }};
+    let audio = new Audio("{% static 'assets/audio/bgm.mp3' %}");
+    audio.loop = true;
+
+    window.onload = function() {
+        if (isPlaying) {
+            audio.play();
+        }
+    };
+
+    function toggleBGM() {
+        fetch("{% url 'toggle_bgm' %}").then(() => {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+            updateButton();
+        });
+    }
+
+    function updateButton() {
+        const button = document.getElementById('bgmButton');
+        button.textContent = isPlaying ? "BGM OFF" : "BGM ON";
+    }
+</script>
+{% endblock %}
