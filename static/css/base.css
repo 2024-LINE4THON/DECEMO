@@ -75,6 +75,10 @@ body {
     padding: 15px 0;
 }
 
+a.no-underline {
+    text-decoration: none !important;
+}
+
 .icon-box {
     width: var(--container-width);
     display: flex;
@@ -91,15 +95,15 @@ body {
     gap: 5px;
 }
 
-.icon-img {
-    width: 25px !important;
-    height: 25px !important;
-    object-fit: contain;
-}
 
-.icon-img.date-img {
+.home-img {
     width: 27.5px !important;
     height: 27.5px !important;
+}
+
+.date-img {
+    width: 25px !important;
+    height: 25px !important;
 }
 
 .home-icon div, .date-icon div {
