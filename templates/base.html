@@ -11,6 +11,13 @@
     <link rel="stylesheet" href="{% static 'css/animations/snow.css' %}">
     <link rel="stylesheet" href="{% static 'css/animations/smoke.css' %}">
     {% block extra_css %}{% endblock %}
+    <style>
+        /* 공통 스타일은 그대로 smoke.css에 두고 */
+        /* 로그인 상태에 따라 변경되어야 하는 값만 여기서 처리 */
+        .smoke-container {
+            bottom: calc({% if user.is_authenticated %}31.5{% else %}23{% endif %}% - 30px);
+        }
+    </style>
 </head>
 <body>
     {% if user.is_authenticated %}
