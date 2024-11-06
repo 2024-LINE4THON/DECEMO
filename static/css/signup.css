@@ -94,3 +94,9 @@ p {
   align-items: center;
   margin-top: 20px;
 }
+
+.err {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
