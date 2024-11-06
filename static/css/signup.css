@@ -1,20 +1,24 @@
 p {
   color: white;
-  font-size: 12px;
+  font-size: 10px;
+  margin: 0;
 }
 
 .id-check {
   width: 80%;
   position: relative;
+  margin-bottom: 2vw;
 }
 
-#id_username {
+#id_username,
+#id_password {
   width: 100% !important;
+  margin-bottom: 0;
 }
 
 #check-username {
   position: absolute;
-  bottom: 25px;
+  bottom: 35px;
   right: 2px;
   width: 62px;
   height: 22px;
@@ -24,6 +28,11 @@ p {
   border: none;
   outline: none;
   font-size: 12px;
+}
+
+.password {
+  width: 80%;
+  margin-bottom: 2vw;
 }
 
 #id_password_confirm {
