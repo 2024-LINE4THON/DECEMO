@@ -68,3 +68,54 @@ body {
         min-width: var(--container-min-width);
     }
 }
+
+
+/* Navbar 스타일 */
+.logged-in {
+    padding-bottom: var(--nav-height);
+}
+
+.nav-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 15px 0 43.5px;
+    z-index: var(--z-navbar);
+}
+
+.icon-box {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    padding: 0 50px;
+}
+
+.home-icon, .date-icon {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.icon-img {
+    width: 25px;
+    height: 25px;
+}
+
+.icon-img.date-img {
+    width: 27.5px;
+    height: 27.5px;
+}
+
+.home-icon div, .date-icon div {
+    font-family: "AppleSDGothicNeo-Regular", sans-serif;
+    font-size: 12px;
+    color: var(--nav-inactive-color);
+}
+
+.home-icon.active div, .date-icon.active div {
+    color: var(--nav-active-color);
+}
