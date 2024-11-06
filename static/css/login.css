@@ -50,4 +50,6 @@ input::placeholder {
   background-color: #dadada;
   color: #1a2d51;
   margin-top: 160px;
+  border: none;
+  outline: none;
 }

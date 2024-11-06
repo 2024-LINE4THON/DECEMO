@@ -1,5 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block title %}로그인{% endblock %} {% block content %}
 <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+<script src="{% static 'js/login.js' %}" defer></script>
+
 <div class="container">
   <header>
     <div class="logo-div">
@@ -16,14 +18,11 @@
     </form>
   </div>
 
-  <!-- <div style="color: red; margin-top: 10px;">
-        {% for field in form %}
-            {% for error in field.errors %}
-                <p>{{ error }}</p>
-            {% endfor %}
-        {% endfor %}
-    </div> -->
-
-  <!-- front  -->
+  <!-- <div style="color: red; margin-top: 10px">
+    {% for field in form %} {% for error in field.errors %}
+    <p>{{ error }}</p>
+    {% endfor %} {% endfor %}
+  </div> -->
 </div>
+
 {% endblock %}
