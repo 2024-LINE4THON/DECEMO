@@ -29,43 +29,48 @@ body {
     background-color: var(--main-bg);
     display: flex;
     justify-content: center;
-    align-items: center; /* 수직 중앙 정렬 추가 */
+    align-items: center;
 }
 
 .page-container {
     max-width: var(--container-width);
     width: 100%;
-    height: 642px; /* 기본 높이 */
+    height: 100vh; /* vh 단위로 변경 */
+    max-height: 622px; /* 최대 높이 설정 */
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
     background-image: url('/static/assets/img/background.png');
-    background-size: 100% 100%;
+    background-size: contain;
     background-position: center top;
     background-repeat: no-repeat;
     overflow: hidden;
     position: relative;
-
-    /* 로그인 여부에 따른 중앙 정렬 조정 */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin: 0 auto;
+    background-color: #ffffff;
 }
 
-.page-container.with-navbar {
-    margin-top: calc(var(--nav-height) / 2); /* 네비게이션 바 높이에 따라 중앙 정렬 조정 */
+/* 로그인된 상태일 때 */
+.page-container.logged-in {
+    height: calc(642px + var(--nav-height));
+    background-size: 320px 642px;
+    background-position: top center;
 }
 
 .content-container {
     box-sizing: border-box;
     z-index: var(--z-content);
     width: 100%;
-    height: 100%;
+    height: 642px; /* 컨텐츠 영역 높이 고정 */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-@media (max-width: 320px) {
+
+@media (max-height: 700px) {
     .page-container {
-        width: 100%;
-        min-width: var(--container-min-width);
+        background-size: contain; /* 세로로 늘어나지 않도록 이미지 비율 유지 */
+        background-position: center bottom; /* 배경 이미지를 네브바 위에 잘 맞추기 위해 위치 조정 */
     }
 }
 
@@ -80,20 +85,25 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
+    height: var(--nav-height);
     background-color: #ffffff;
-    padding: 15px 0 43.5px;
     z-index: var(--z-navbar);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 15px 0;
 }
 
 .icon-box {
+    width: var(--container-width);
     display: flex;
     justify-content: center;
     gap: 100px;
-    padding: 0 50px;
 }
 
 .home-icon, .date-icon {
-    cursor: pointer;
+    width: 50px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -101,13 +111,14 @@ body {
 }
 
 .icon-img {
-    width: 25px;
-    height: 25px;
+    width: 25px !important;
+    height: 25px !important;
+    object-fit: contain;
 }
 
 .icon-img.date-img {
-    width: 27.5px;
-    height: 27.5px;
+    width: 27.5px !important;
+    height: 27.5px !important;
 }
 
 .home-icon div, .date-icon div {

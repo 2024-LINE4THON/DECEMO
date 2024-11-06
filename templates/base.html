@@ -29,10 +29,10 @@
                     </div>
                 </div>
             </div>
-            {% if user.is_authenticated %}
-                {% include 'navbar.html' %}
-            {% endif %}
         </div>
+        {% if user.is_authenticated %}
+        {% include 'navbar.html' %}
+    {% endif %}
 
         <!-- 실제 콘텐츠 -->
         <div class="content-container">
@@ -42,14 +42,9 @@
 
     </div>
 
-        <!-- 네비게이션 바 항상 포함 -->
-        <!-- {% if user.is_authenticated and not hide_navbar %} -->
-        <!-- {% include 'navbar.html' %} -->
-        <!-- {% endif %} -->
-
     <script>    document.addEventListener('DOMContentLoaded', function() {
         const snowContainer = document.getElementById('snow');
-        const flakeCount = 10000;  // 눈송이 수
+        const flakeCount = 100000;  // 눈송이 수
 
         if (snowContainer) {
             for (let i = 0; i < flakeCount; i++) {
