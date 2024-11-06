@@ -19,13 +19,14 @@
         font-family: var(--main-font);
         font-size: 20px;
         font-weight: normal;
-        margin: 10px 0;
+        margin: 50px 0;
         text-align: center;
         color: #ffffff;
     }
 
     .d-day-text {
         font-family: var(--main-font);
+        font-weight: medium;
         font-size: 64px;
         text-align: center;
         color: #ffffff;
@@ -35,6 +36,7 @@
         width: 190px;
         height: auto;
         margin-top: 20px;
+        margin-bottom: 30px;
         display: block;
     }
 
@@ -112,7 +114,7 @@
         <img src="{% static 'assets/img/bell_main.png' %}" alt="벨 이미지" class="bell-image">
     </a>
 
-    <div class="progress-container">
+    <div class="progress-contai  ner">
         <div class="progress-content">
             <div class="id-text">{{ username }}</div>님의 진행률
         </div>
@@ -126,6 +128,9 @@
         <button id="bgmButton" onclick="toggleBGM()">{{ isPlaying|yesno:"BGM OFF,BGM ON" }}</button>
         <a href="{% url 'logout' %}"><button>로그아웃</button></a>
     </div>
+
+    <div>Copyright &copy; 2024. 멋쟁이 사자처럼</div>
+    <div>4호선톤 3조 All rights reserved.</div>
 </div>
 {% endblock %}
 
