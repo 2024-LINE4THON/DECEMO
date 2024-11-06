@@ -10,8 +10,8 @@
     --container-min-width: 320px;
 
     /* Z-index */
-    --z-background: 1;
-    --z-animations: 10;
+    --z-background: -10;
+    --z-animations: -10;
     --z-content: 20;
 
     --nav-height: 83.5px;

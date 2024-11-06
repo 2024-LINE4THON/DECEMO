@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="{% static 'css/animations/smoke.css' %}">
     {% block extra_css %}{% endblock %}
     <style>
-        /* 공통 스타일은 그대로 smoke.css에 두고 */
-        /* 로그인 상태에 따라 변경되어야 하는 값만 여기서 처리 */
         .smoke-container {
             bottom: calc({% if user.is_authenticated %}31.5{% else %}23{% endif %}% - 30px);
         }
@@ -24,29 +22,28 @@
     <div class="layout-container">
     {% endif %}
         <div class="page-container">
-            <!-- 배경 애니메이션 -->
-            <div class="snow" id="snow"></div>
-            <div class="smoke-container">
-                <div id="box">
-                    <div id="chimney-main">
-                        <div id="chimney-smoke-box">
-                            <div id="chimney-smoke1" class="chimney-smoke"></div>
-                            <div id="chimney-smoke2" class="chimney-smoke"></div>
-                            <div id="chimney-smoke3" class="chimney-smoke"></div>
-                            <div id="chimney-smoke4" class="chimney-smoke"></div>
-                            <div id="chimney-smoke5" class="chimney-smoke"></div>
-                            <div id="chimney-smoke6" class="chimney-smoke"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- 실제 콘텐츠 -->
             <div class="content-container">
                 {% block content %}
                 {% endblock %}
             </div>
-        </div>
+            <!-- 배경 애니메이션 -->
+            <div class="snow" id="snow"></div>
+                <div class="smoke-container">
+                    <div id="box">
+                        <div id="chimney-main">
+                            <div id="chimney-smoke-box">
+                                <div id="chimney-smoke1" class="chimney-smoke"></div>
+                                <div id="chimney-smoke2" class="chimney-smoke"></div>
+                                <div id="chimney-smoke3" class="chimney-smoke"></div>
+                                <div id="chimney-smoke4" class="chimney-smoke"></div>
+                                <div id="chimney-smoke5" class="chimney-smoke"></div>
+                                <div id="chimney-smoke6" class="chimney-smoke"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         {% if user.is_authenticated %}
             {% include 'navbar.html' %}

@@ -4,10 +4,8 @@
     transform: translate(88%, -10%);
     width: 100px;
     height: 100px;
-}
-
-.layout-container .smoke-container {
-    bottom: calc(10% - 30px); /* 더 위로 올리려면 퍼센트 값을 늘리세요 */
+    pointer-events: none;
+    z-index: var(--z-animations);
 }
 
 #chimney-main {
