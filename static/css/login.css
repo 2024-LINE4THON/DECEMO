@@ -1,0 +1,18 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-div {
+  width: 120px;
+  height: 48px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.logo-div img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
