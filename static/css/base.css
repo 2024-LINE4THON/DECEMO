@@ -32,62 +32,43 @@ body {
     align-items: center;
 }
 
-.page-container {
-    max-width: var(--container-width);
-    width: 100%;
-    height: 100vh; /* vh 단위로 변경 */
-    max-height: 622px; /* 최대 높이 설정 */
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.page-container {
+    width: var(--container-width);
+    height: 642px;
     background-image: url('/static/assets/img/background.png');
     background-size: contain;
     background-position: center top;
     background-repeat: no-repeat;
     overflow: hidden;
     position: relative;
-    margin: 0 auto;
     background-color: #ffffff;
-}
-
-/* 로그인된 상태일 때 */
-.page-container.logged-in {
-    height: calc(642px + var(--nav-height));
-    background-size: 320px 642px;
-    background-position: top center;
 }
 
 .content-container {
     box-sizing: border-box;
     z-index: var(--z-content);
     width: 100%;
-    height: 642px; /* 컨텐츠 영역 높이 고정 */
+    height: 100%;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-
-@media (max-height: 700px) {
-    .page-container {
-        background-size: contain; /* 세로로 늘어나지 않도록 이미지 비율 유지 */
-        background-position: center bottom; /* 배경 이미지를 네브바 위에 잘 맞추기 위해 위치 조정 */
-    }
-}
-
-
 /* Navbar 스타일 */
-.logged-in {
-    padding-bottom: var(--nav-height);
-}
-
 .nav-box {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    width: var(--container-width);
     height: var(--nav-height);
     background-color: #ffffff;
-    z-index: var(--z-navbar);
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: flex-start;

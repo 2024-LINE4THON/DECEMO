@@ -13,47 +13,55 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <div class="page-container logged-in">
-        <!-- 배경 애니메이션 -->
-        <div class="snow" id="snow"></div>
-        <div class="smoke-container">
-            <div id="box">
-                <div id="chimney-main">
-                    <div id="chimney-smoke-box">
-                        <div id="chimney-smoke1" class="chimney-smoke"></div>
-                        <div id="chimney-smoke2" class="chimney-smoke"></div>
-                        <div id="chimney-smoke3" class="chimney-smoke"></div>
-                        <div id="chimney-smoke4" class="chimney-smoke"></div>
-                        <div id="chimney-smoke5" class="chimney-smoke"></div>
-                        <div id="chimney-smoke6" class="chimney-smoke"></div>
+    {% if user.is_authenticated %}
+    <div class="layout-container">
+    {% endif %}
+        <div class="page-container">
+            <!-- 배경 애니메이션 -->
+            <div class="snow" id="snow"></div>
+            <div class="smoke-container">
+                <div id="box">
+                    <div id="chimney-main">
+                        <div id="chimney-smoke-box">
+                            <div id="chimney-smoke1" class="chimney-smoke"></div>
+                            <div id="chimney-smoke2" class="chimney-smoke"></div>
+                            <div id="chimney-smoke3" class="chimney-smoke"></div>
+                            <div id="chimney-smoke4" class="chimney-smoke"></div>
+                            <div id="chimney-smoke5" class="chimney-smoke"></div>
+                            <div id="chimney-smoke6" class="chimney-smoke"></div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- 실제 콘텐츠 -->
+            <div class="content-container">
+                {% block content %}
+                {% endblock %}
+            </div>
         </div>
+
         {% if user.is_authenticated %}
-        {% include 'navbar.html' %}
+            {% include 'navbar.html' %}
+        {% endif %}
+    {% if user.is_authenticated %}
+    </div>
     {% endif %}
 
-        <!-- 실제 콘텐츠 -->
-        <div class="content-container">
-            {% block content %}
-            {% endblock %}
-        </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const snowContainer = document.getElementById('snow');
+            const flakeCount = 100000;  // 눈송이 수
 
-    </div>
-
-    <script>    document.addEventListener('DOMContentLoaded', function() {
-        const snowContainer = document.getElementById('snow');
-        const flakeCount = 100000;  // 눈송이 수
-
-        if (snowContainer) {
-            for (let i = 0; i < flakeCount; i++) {
-                const flake = document.createElement('div');
-                flake.className = 'flake';
-                snowContainer.appendChild(flake);
+            if (snowContainer) {
+                for (let i = 0; i < flakeCount; i++) {
+                    const flake = document.createElement('div');
+                    flake.className = 'flake';
+                    snowContainer.appendChild(flake);
+                }
             }
-        }
-    });</script>
+        });
+    </script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>
