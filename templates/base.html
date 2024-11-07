@@ -24,10 +24,10 @@
             </div>
             <!-- 배경 애니메이션 -->
             <div class="snow" id="snow"></div>
-                {% if user.is_authenticated %}
+            {% if user.is_authenticated %}
                 {% include 'navbar.html' %}
-            </div>
-        {% endif %}
+            {% endif %}
+        </div> 
     {% if user.is_authenticated %}
     </div>
     {% endif %}
