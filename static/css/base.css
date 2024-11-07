@@ -71,10 +71,10 @@ body {
     box-sizing: border-box;
     z-index: var(--z-content);
     width: 100%;
-    height: calc(100% - var(--bottom-elements-height));
+    height: calc(100% - var(--bottom-elements-height) + 12px);
     overflow-y: auto;
     display: flex;
-    padding-bottom: -10px;
+    padding-bottom: 0px;
     flex-direction: column;
     align-items: center;
 }
