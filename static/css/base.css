@@ -18,7 +18,7 @@
     --container-width: 320px;
     --container-min-width: 320px;
     --container-height: 624px;
-    --nav-height: 83.5px;
+    --nav-height: 60px;
     --content-height: calc(var(--container-height) - var(--nav-height));
 
     /* Z-index */

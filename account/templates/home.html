@@ -12,8 +12,7 @@
         align-items: center;
         padding: 20px;
         box-sizing: border-box;
-        flex: 1 1 auto;
-    overflow-y: auto;
+        overflow-y: auto;
     }
 
     .date-text {
@@ -103,6 +102,20 @@
     button:hover {
         background-color: #FFE169;
     }
+
+    .home-container::-webkit-scrollbar {
+    width: 6px;
+    }
+
+    .home-container::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .home-container::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+    }
+
 </style>
 {% endblock %}
 
