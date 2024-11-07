@@ -11,11 +11,6 @@
     <link rel="stylesheet" href="{% static 'css/animations/snow.css' %}">
     <!-- <link rel="stylesheet" href="{% static 'css/animations/smoke.css' %}"> -->
     {% block extra_css %}{% endblock %}
-    <style>
-        .smoke-container {
-            bottom: calc({% if user.is_authenticated %}31.5{% else %}23{% endif %}% - 30px);
-        }
-    </style>
 </head>
 <body>
     {% if user.is_authenticated %}

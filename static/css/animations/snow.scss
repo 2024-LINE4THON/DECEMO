@@ -5,15 +5,18 @@
     @return $random_range;
 }
 
+$snow-container-height: 620px; // 컨테이너 높이 변수 추가
+
 .snow {
     $total: 2000;  // 눈송이 수
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 100%; // 부모의 높이에 맞춤
     top: 0;
     left: 0;
     pointer-events: none;
     z-index: 1;
+    overflow: hidden; // 오버플로우 방지
 
     @for $i from 1 through $total {
         $random-x: random(1000000) * 0.0001vw;
@@ -21,7 +24,7 @@
         $random-x-end: $random-x + $random-offset;
         $random-x-end-yoyo: $random-x + ($random-offset / 2);
         $random-yoyo-time: random_range(30000, 80000) / 100000;
-        $random-yoyo-y: $random-yoyo-time * 100vh;
+        $random-yoyo-y: $random-yoyo-time * $snow-container-height; // 수정: 100vh 대신 컨테이너 높이 사용
         $random-scale: random(10000) * 0.0001;
         $fall-duration: random_range(10, 25) * 1s;  // 낙하 시간 조정
         $fall-delay: random(20) * -1s;
@@ -52,7 +55,7 @@
             }
 
             to {
-                transform: translate($random-x-end-yoyo, 100vh) scale($random-scale);
+                transform: translate($random-x-end-yoyo, $snow-container-height) scale($random-scale); // 수정: 100% 대신 컨테이너 높이 사용
             }
         }
     }
