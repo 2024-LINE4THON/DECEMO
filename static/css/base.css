@@ -14,17 +14,19 @@
     --main-font: 'Apple SD Gothic Neo', sans-serif;
     --eng-font: 'Univers Light Condensed', sans-serif;
 
-    /* 컨테이너 가로 제한 */
+    /* 컨테이너 제한 */
     --container-width: 320px;
     --container-min-width: 320px;
+    --container-height: 624px;
+    --nav-height: 83.5px;
+    --content-height: calc(var(--container-height) - var(--nav-height));
 
     /* Z-index */
     --z-background: -10;
     --z-animations: -10;
     --z-content: 20;
-
-    --nav-height: 83.5px;
     --z-navbar: 30;
+    
     --nav-active-color: #FFD52B;
     --nav-inactive-color: #2A2A2A;
 }
@@ -57,7 +59,8 @@ body {
     background-size: contain;
     background-position: center top;
     background-repeat: no-repeat;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     position: relative;
     background-color: #ffffff;
 }
@@ -85,7 +88,7 @@ body {
     padding: 15px 0;
 }
 
-a.no-underline {
+.no-underline {
     text-decoration: none !important;
 }
 
@@ -105,7 +108,6 @@ a.no-underline {
     gap: 5px;
 }
 
-
 .home-img {
     width: 27.5px !important;
     height: 27.5px !important;
@@ -124,4 +126,18 @@ a.no-underline {
 
 .home-icon.active div, .date-icon.active div {
     color: var(--nav-active-color);
+}
+
+/* 스크롤바 스타일링 (선택사항) */
+.page-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.page-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.page-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
 }
