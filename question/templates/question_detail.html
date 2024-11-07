@@ -1,23 +1,41 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>질문 상세</title>
-</head>
+{% extends 'base.html' %} {% load static %} {% block title %}질문 상세{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/question_detail.css' %}" />
+{% endblock %} {% block content %}
 <body>
-    <h1>{{ question.date|date:"Y년 n월 j일" }}의 질문</h1>
-    <p>{{ question.text }}</p>
+  <header>
+    <a href="{% url 'calendar' %}" class="go-calendar"> < </a>
+    <h1 class="date">{{ question.date|date:"Y년 n월 j일" }}</h1>
+  </header>
 
-    {% if message %}
-        <p>{{ message }}</p>
-    {% else %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form.response }}  <!-- Response 레이블 없이 답변 필드만 표시 -->
-            <button type="submit">저장</button>
-        </form>
-    {% endif %}
+  <hr />
 
-    <a href="{% url 'calendar' %}">캘린더로 돌아가기</a> <!--임의로 작성했습니다!!-->
+  <div class="question_position">
+    <div class="question">{{ question.text }}</div>
+  </div>
+  
+
+  {% if message %}
+  <p>{{ message }}</p>
+  {% else %}
+  <form method="post" class="answer">
+    {% csrf_token %}
+    <!-- Response 레이블 없이 답변 필드만 표시 -->
+    <div class="text-box">{{ form.response }}</div>
+    <div class="submit-btn"><button type="submit" class="submit">저장</button></div>
+  </form>
+
+  <div class="modal">
+    <div class="modal-popup">
+      <h3>저장되었습니다.</h3>
+      <button type="button" class="close_btn">확인</button>
+    </div>
+  </div>
+  {% endif %}
+
+  
+  <!--임의로 작성했습니다!!-->
 </body>
-</html>
+{% endblock %}
+{% block extra_js %}
+  <script src="{% static "js/question_detail.js" %}"></script>
+  {% endblock %}
