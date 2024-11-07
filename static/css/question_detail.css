@@ -26,12 +26,18 @@ hr {
   width: 263px;
 }
 
+.question_position {
+  width: 263px;
+  display: flex;
+  justify-content: start;
+}
+
 .question {
   background-color: white;
   padding: 8px;
   border-radius: 15px 15px 15px 0;
 
-  font-size: 16px;
+  font-size: 14px;
   margin: 20px 0;
 }
 
@@ -64,7 +70,7 @@ textarea {
   border: none;
   border-radius: 15px;
 
-  background-color: #ffd739;
+  background-color: #dadada;
 
   &:hover {
     cursor: pointer;
