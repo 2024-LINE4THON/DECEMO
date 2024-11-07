@@ -11,11 +11,6 @@
     <link rel="stylesheet" href="{% static 'css/animations/snow.css' %}">
     <link rel="stylesheet" href="{% static 'css/animations/smoke.css' %}">
     {% block extra_css %}{% endblock %}
-    <style>
-        .smoke-container {
-            bottom: calc({% if user.is_authenticated %}31.5{% else %}23{% endif %}% - 30px);
-        }
-    </style>
 </head>
 <body>
     {% if user.is_authenticated %}
@@ -29,25 +24,10 @@
             </div>
             <!-- 배경 애니메이션 -->
             <div class="snow" id="snow"></div>
-                <div class="smoke-container">
-                    <div id="box">
-                        <div id="chimney-main">
-                            <div id="chimney-smoke-box">
-                                <div id="chimney-smoke1" class="chimney-smoke"></div>
-                                <div id="chimney-smoke2" class="chimney-smoke"></div>
-                                <div id="chimney-smoke3" class="chimney-smoke"></div>
-                                <div id="chimney-smoke4" class="chimney-smoke"></div>
-                                <div id="chimney-smoke5" class="chimney-smoke"></div>
-                                <div id="chimney-smoke6" class="chimney-smoke"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        {% if user.is_authenticated %}
-            {% include 'navbar.html' %}
-        {% endif %}
+            {% if user.is_authenticated %}
+                {% include 'navbar.html' %}
+            {% endif %}
+        </div> 
     {% if user.is_authenticated %}
     </div>
     {% endif %}
