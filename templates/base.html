@@ -38,10 +38,9 @@
                         </div>
                     </div>
                 </div>
+                {% if user.is_authenticated %}
+                {% include 'navbar.html' %}
             </div>
-
-        {% if user.is_authenticated %}
-            {% include 'navbar.html' %}
         {% endif %}
     {% if user.is_authenticated %}
     </div>
@@ -50,7 +49,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const snowContainer = document.getElementById('snow');
-            const flakeCount = 2000;
+            const flakeCount = 1500;
 
             if (snowContainer) {
                 for (let i = 0; i < flakeCount; i++) {
