@@ -77,18 +77,38 @@ body {
 }
 
 /* Navbar 스타일 */
-.nav-box {
-    position: absolute;
+
+.bottom-fixed-container {
+    position: fixed;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+    width: var(--container-width);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 40; /* 네비게이션 바 및 이미지의 z-index */
+}
+
+.snowbill-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.snowbill {
+    max-width: 100%;
+    height: auto;
+}
+
+.nav-box {
+    position: relative;
     width: 100%; 
     height: var(--nav-height);
     background-color: #ffffff;
-    box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     padding: 15px 0;
     z-index: var(--z-navbar);
 }
@@ -98,7 +118,7 @@ a.no-underline {
 }
 
 .icon-box {
-    width: var(--container-width);
+    width: 100%;
     display: flex;
     justify-content: center;
     gap: 100px;
