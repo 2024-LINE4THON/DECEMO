@@ -1,6 +1,10 @@
-{% extends 'base.html' %} {% load static %} {% block title %}질문 상세{% endblock %} {% block extra_css %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}질문 상세{% endblock %}
+{% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/question_detail.css' %}" />
-{% endblock %} {% block content %}
+{% endblock %}
+{% block content %}
 <body>
   <header>
     <a href="{% url 'calendar' %}" class="go-calendar"> < </a>
@@ -19,23 +23,19 @@
   {% else %}
   <form method="post" class="answer">
     {% csrf_token %}
-    <!-- Response 레이블 없이 답변 필드만 표시 -->
     <div class="text-box">{{ form.response }}</div>
-    <div class="submit-btn"><button type="submit" class="submit">저장</button></div>
+    <div class="submit-btn"><button type="button" class="submit">저장</button></div>
   </form>
 
-  <div class="modal">
+  <div class="modal" style="display: none;">
     <div class="modal-popup">
       <h3>저장되었습니다.</h3>
       <button type="button" class="close_btn">확인</button>
     </div>
   </div>
   {% endif %}
-
-  
-  <!--임의로 작성했습니다!!-->
 </body>
 {% endblock %}
 {% block extra_js %}
-  <script src="{% static "js/question_detail.js" %}"></script>
-  {% endblock %}
+  <script src="{% static 'js/question_detail.js' %}"></script>
+{% endblock %}
