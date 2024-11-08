@@ -23,22 +23,32 @@
     <div class="nav-box">
         <div class="icon-box">
             <a href="{% url 'home' %}" class="no-underline">
-                <div class="home-icon active">
-                    <img src="{% static 'assets/img/home-ON.png' %}" alt="홈" class="icon-img home-img">
-                    <div>홈</div>
+                <div class="home-icon {% if '/question' not in request.path %}active{% endif %}">
+                    {% if '/question' not in request.path %}
+                        <img src="{% static 'assets/img/home-ON.png' %}" alt="홈" class="icon-img home-img">
+                        <div style="color: #FFD52B;">홈</div>
+                    {% else %}
+                        <img src="{% static 'assets/img/home-OFF.png' %}" alt="홈" class="icon-img home-img">
+                        <div style="color: #2A2A2A;">홈</div>
+                    {% endif %}
                 </div>
             </a>
             <a href="{% url 'calendar' %}" class="no-underline">
-                <div class="date-icon">
-                    <img src="{% static 'assets/img/date-OFF.png' %}" alt="날짜" class="icon-img date-img">
-                    <div>캘린더</div>
+                <div class="date-icon {% if '/question' in request.path %}active{% endif %}">
+                    {% if '/question' in request.path %}
+                        <img src="{% static 'assets/img/date-ON.png' %}" alt="캘린더" class="icon-img date-img">
+                        <div style="color: #FFD52B;">캘린더</div>
+                    {% else %}
+                        <img src="{% static 'assets/img/date-OFF.png' %}" alt="캘린더" class="icon-img date-img">
+                        <div style="color: #2A2A2A;">캘린더</div>
+                    {% endif %}
                 </div>
             </a>
         </div>
     </div>
 </div>
         
-        <script>
+        <!-- <script>
             // 클릭 이벤트 처리
             document.querySelector('.home-icon').addEventListener('click', function() {
                 if(!this.classList.contains('active')) { // 이미 활성화 상태가 아닐 때만 실행
@@ -79,6 +89,6 @@
                     homeText.style.color = '#2A2A2A';
                 }
             });
-        </script>
+        </script> -->
     </body>
 </html>
