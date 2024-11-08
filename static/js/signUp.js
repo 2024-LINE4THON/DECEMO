@@ -3,6 +3,7 @@ const id_btn = document.getElementById("check-username");
 const password = document.getElementById("id_password");
 const password_check = document.getElementById("id_password_confirm");
 const login_btn = document.getElementById("login_btn");
+const p = document.getElementById("modal_p");
 
 function idCheck() {
   if (id.value.length > 0) {
@@ -33,7 +34,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (data) {
         if (data.is_taken) {
-          $(".modal").show();
+          showPopup("중복되는 아이디입니다.");
         } else {
           id_btn.style.backgroundColor = "#dadada";
         }
@@ -41,6 +42,13 @@ $(document).ready(function () {
     });
   });
 });
+
+function showPopup(message) {
+  $(document).ready(function () {
+    p.innerText = message;
+    $(".modal").show();
+  });
+}
 
 //팝업 닫기
 function close_pop(flag) {

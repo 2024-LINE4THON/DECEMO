@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="{% static 'css/login.css' %}" />
 <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
 
-<script src="https://code.jquery.com/jquery-latest.js"></script>
 <script src="{% static 'js/signup.js' %}" defer></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -15,7 +14,7 @@
   <div class="modal">
     <!-- Modal content -->
     <div class="modal-content">
-      <p style="font-size: 12px; color: black">중복되는 아이디입니다</p>
+      <p style="color: black" id="modal_p">{{message}}</p>
       <div class="pop_div" onClick="close_pop();">
         <span class="pop_bt" style="font-size: 12px"> 확인 </span>
       </div>
@@ -46,11 +45,15 @@
       <button id="login_btn" type="submit" class="button">회원가입</button>
     </form>
 
-    <!-- <div class="err">
-      {% for field in form %} {% for error in field.errors %}
-      <p style="color: #ffd739">{{ error }}</p>
-      {% endfor %} {% endfor %}
-    </div> -->
+    {% if messages %}
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        {% for message in messages %}
+          showPopup("{{ message }}");
+        {% endfor %}
+      });
+    </script>
+    {% endif %}
   </div>
 </body>
 
