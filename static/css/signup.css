@@ -62,9 +62,9 @@ p {
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 25% auto;
+  margin: 17% auto;
   padding: 15px;
-  width: 20%;
+  width: 15%;
   border-radius: 15px;
   border: 1px solid #ffd739;
   display: flex;

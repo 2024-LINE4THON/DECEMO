@@ -12,8 +12,8 @@
   <div class="form-div">
     <form method="POST">
       {% csrf_token %}
-      <input id="id_username" name="username" type="text" placeholder="아이디를 입력해주세요" maxlength="20" required />
-      <input id="id_password" name="password" type="password" placeholder="비밀번호를 입력해주세요" minlength="8" required />
+      <input id="id_username" name="username" type="text" placeholder="아이디를 입력해주세요" />
+      <input id="id_password" name="password" type="password" placeholder="비밀번호를 입력해주세요" />
       <button id="login_btn" type="submit" class="button">로그인</button>
     </form>
   </div>
