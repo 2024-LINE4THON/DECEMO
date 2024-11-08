@@ -1,171 +1,258 @@
 {% extends 'base.html' %} {% load static %} {% block title %}홈{% endblock %} {% block extra_css %}
 <style>
-      .home-container {
-          width: 100%;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          box-sizing: border-box;
-          overflow-y: auto;
-      }
+    .home-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        overflow-y: auto;
+    }
 
-      .date-text {
-          font-family: var(--main-font);
-          font-size: 20px;
-          font-weight: normal;
-          margin: 50px 0;
-          text-align: center;
-          color: #ffffff;
-      }
+    .date-text {
+        font-family: var(--main-font);
+        font-size: 20px;
+        font-weight: normal;
+        margin: 60px 0 20px 0;
+        text-align: center;
+        color: #ffffff;
+    }
 
-      .d-day-text {
-          font-family: var(--main-font);
-          font-weight: medium;
-          font-size: 64px;
-          text-align: center;
-          color: #ffffff;
-      }
+    .d-day-text {
+        font-family: var(--main-font);
+        font-weight: medium;
+        font-size: 64px;
+        text-align: center;
+        color: #ffffff;
+    }
 
-      .bell-image {
-          width: 190px;
-          height: auto;
-          margin-top: 20px;
-          margin-bottom: 30px;
-          display: block;
-      }
+    .bell-image {
+        width: 190px;
+        height: auto;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        display: block;
+    }
 
-      .progress-container {
-      width: 100%;
-      margin-top: 20px;
-      text-align: center;
-  }
+    .progress-container {
+        width: 100%;
+        margin-top: 20px;
+        text-align: center;
+    }
 
-  .progress-content {
-      color: #ffffff;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      margin-bottom: 10px;
-  }
+    .progress-content {
+        color: #ffffff;
+        font-size: 16px;
+        display: flex;           
+        align-items: center;    
+        justify-content: center; 
+        gap: 5px;               
+        margin-bottom: 10px;   
+    }
 
-  .id-text {
-      font-family: var(--eng-font);
-      color: #ffffff;
-      font-size: 20px;
-      font-style: italic;
-  }
+    .id-text {
+        font-family: var(--eng-font);
+        color: #ffffff;
+        font-size: 20px;
+        font-style: italic;
+        text-shadow: 0 0 1px rgba(255, 255, 255, 0.2),
+                    0 0 2px  rgba(255, 255, 255, 0.3),
+                    0 0 3px rgba(255, 255, 255, 0.4),
+                    0 0 10px rgba(255, 255, 255, 0.6),
+                    0 0 30px rgba(255, 255, 255, 0.7),
+                    0 0 50px rgba(255, 255, 255, 0.9);
+    }
 
-      .progress-bar {
-          width: 80%;
-          height: 25px;
-          background-color: #e0e0e0;
-          border-radius: 10px;
-          overflow: hidden;
-          margin: 10px auto;
-      }
+    .progress-bar {
+        width: 80%;
+        height: 25px;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px auto;
+    }
 
-      .progress-bar-fill {
-          height: 100%;
-          background-color: #FFD739;
-          width: {{ progress_percentage }}%;
-      }
+    .progress-bar-fill {
+        height: 100%;
+        background-color: #FFD739;
+        width: {{ progress_percentage }}%;
+    }
 
-      .total-text {
-          font-size: 12px;
-          color: white;
-      }
+    .total-text {
+        font-size: 12px;
+        color: white;
+    }
 
-      .button-container {
-          width: 100%;
-          margin-top: 20px;
-          display: flex;
-          justify-content: center;
-          gap: 10px;
-      }
+    .button-container {
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
 
-      button {
-          padding: 8px 16px;
-          border-radius: 5px;
-          border: none;
-          background-color: #FFD739;
-          cursor: pointer;
-      }
 
-      button:hover {
-          background-color: #FFE169;
-      }
+    .bgm-button, .logout-button {
+        font-family: var(--main-font);
+        font-size: 16px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 10px;
+        transition: color 0.3s ease;
+    }
 
-      .home-container::-webkit-scrollbar {
-      width: 6px;
-      }
+    .bgm-button {
+        color: var(--yellow);
+    }
 
-      .home-container::-webkit-scrollbar-track {
-          background: transparent;
-      }
+    .bgm-button-off {
+        color: white;
+    }
 
-      .home-container::-webkit-scrollbar-thumb {
-          background: rgba(0, 0, 0, 0.1);
-          border-radius: 3px;
-      }
+    .logout-button {
+        color: white;
+    }
+
+    .sound-icon, .logout-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+
+    .sound-icon {
+        display: none;
+    }
+
+    .bgm-button .sound-on {
+        display: block;
+    }
+
+    .bgm-button .sound-off {
+        display: none;
+    }
+
+    .bgm-button.bgm-button-off .sound-on {
+        display: none;
+    }
+
+    .bgm-button.bgm-button-off .sound-off {
+        display: block;
+    }
+
+    .logout-icon {
+        display: block;
+    }
+
+
+    button {
+        padding: 5px 10px;
+        border-radius: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: var(--main-font);
+        font-size: 16px;
+        font-weight: 1000;
+    }
+
+    button:hover {
+        background-color: #dbdbdb2a;
+    }
+
+    .copy-text {
+        text-align: center;
+        padding-top: 54px;
+        color: white;
+        font-size: 10px;
+        font-weight: medium;
+        line-height: 20px;
+    }
+
+    .home-container::-webkit-scrollbar {
+    width: 6px;
+    }
+
+    .home-container::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .home-container::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+    }
 </style>
 {% endblock %} {% block content %}
 <div class="home-container">
   <div class="date-text">{{ today|date:"Y년 m월 d일" }}</div>
   <div class="d-day-text">D-{{ d_day }}</div>
 
-  <a href="{% url 'question_detail' today.day %}">
-    <img src="{% static 'assets/img/bell_main.png' %}" alt="벨 이미지" class="bell-image" />
-  </a>
+    <a href="{% url 'question_detail' today.day %}">
+        <img src="{% static 'assets/img/bell_main.png' %}" alt="벨 이미지" class="bell-image">
+    </a>
 
-  <div class="progress-contai ner">
-    <div class="progress-content">
-      <div class="id-text">{{ username }}</div>
-      님의 진행률
+    <div class="progress-contai  ner">
+        <div class="progress-content">
+            <div class="id-text">{{ username }}</div>님의 진행률
+        </div>
+        <div class="progress-bar">
+            <div class="progress-bar-fill"></div>
+        </div>
+        <p class="total-text">총 {{ total_questions }}일 중 {{ answered_count }}일 작성했어요!</p>
     </div>
-    <div class="progress-bar">
-      <div class="progress-bar-fill"></div>
-    </div>
-    <p class="total-text">총 {{ total_questions }}일 중 {{ answered_count }}일 작성했어요!</p>
-  </div>
 
-  <div class="button-container">
-    <button id="bgmButton" onclick="toggleBGM()">{{ isPlaying|yesno:"BGM OFF,BGM ON" }}</button>
-    <a href="{% url 'logout' %}"><button>로그아웃</button></a>
-  </div>
+    <div class="button-container">
+        <button id="bgmButton" class="bgm-button" onclick="toggleBGM()">
+            <img src="{% static 'assets/img/sound-on.png' %}" alt="sound on" class="sound-icon sound-on">
+            <img src="{% static 'assets/img/sound-off.png' %}" alt="sound off" class="sound-icon sound-off">
+            <span>{{ isPlaying|yesno:"BGM ON,BGM OFF" }}</span>
+        </button>
+        <img src="{% static 'assets/img/slash.svg' %}" alt="슬래시" class="slash-img">
+        <a href="{% url 'logout' %}">
+            <button class="logout-button">
+                <img src="{% static 'assets/img/log-out.png' %}" alt="logout" class="logout-icon">
+                <span>LOGOUT</span>
+            </button>
+        </a>
+    </div>
 
   <div>Copyright &copy; 2024. 멋쟁이 사자처럼</div>
   <div>4호선톤 3조 All rights reserved.</div>
 </div>
 {% endblock %} {% block extra_js %}
 <script>
-  let isPlaying = {{ isPlaying|yesno:"true,false" }};
-  let audio = new Audio("{% static 'assets/audio/bgm.mp3' %}");
-  audio.loop = true;
+    let isPlaying = {{ isPlaying|yesno:"true,false" }};
+    let audio = new Audio("{% static 'assets/audio/bgm.mp3' %}");
+    audio.loop = true;
 
-  window.onload = function() {
-      if (isPlaying) {
-          audio.play();
-      }
-  };
+    window.onload = function() {
+        if (isPlaying) {
+            audio.play();
+        } else {
+            document.getElementById('bgmButton').classList.add('bgm-button-off');
+        }
+    };
 
-  function toggleBGM() {
-      fetch("{% url 'toggle_bgm' %}").then(() => {
-          isPlaying = !isPlaying;
-          if (isPlaying) {
-              audio.play();
-          } else {
-              audio.pause();
-          }
-          updateButton();
-      });
-  }
+    function toggleBGM() {
+        fetch("{% url 'toggle_bgm' %}").then(() => {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                audio.play();
+                document.getElementById('bgmButton').classList.remove('bgm-button-off');
+            } else {
+                audio.pause();
+                document.getElementById('bgmButton').classList.add('bgm-button-off');
+            }
+            updateButton();
+        });
+    }
 
-  function updateButton() {
-      const button = document.getElementById('bgmButton');
-      button.textContent = isPlaying ? "BGM OFF" : "BGM ON";
-  }
+    function updateButton() {
+        const button = document.getElementById('bgmButton');
+        const spanText = button.querySelector('span');
+        spanText.textContent = isPlaying ? "BGM ON" : "BGM OFF";
+    }
 </script>
 {% endblock %}
