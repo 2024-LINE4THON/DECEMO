@@ -1,51 +1,46 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %}</title>
-    
+
     <!-- 공통 CSS -->
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/animations/snow.css' %}">
-    <link rel="stylesheet" href="{% static 'css/animations/smoke.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/animations/snow.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/animations/smoke.css' %}" />
     {% block extra_css %}{% endblock %}
-</head>
-<body>
+  </head>
+  <body>
     {% if user.is_authenticated %}
     <div class="layout-container">
-    {% endif %}
-        <div class="page-container">
-            <!-- 실제 콘텐츠 -->
-            <div class="content-container">
-                {% block content %}
-                {% endblock %}
-            </div>
-            <!-- 배경 애니메이션 -->
-            <div class="snow" id="snow"></div>
-            {% if user.is_authenticated %}
-                {% include 'navbar.html' %}
-            {% endif %}
-        </div> 
-    {% if user.is_authenticated %}
+      {% endif %}
+      <div class="page-container">
+        <!-- 실제 콘텐츠 -->
+        <div class="content-container">{% block content %} {% endblock %}</div>
+        <!-- 배경 애니메이션 -->
+        <div class="snow" id="snow"></div>
+        {% if user.is_authenticated %} {% include 'navbar.html' %} {% endif %}
+      </div>
+      {% if user.is_authenticated %}
     </div>
     {% endif %}
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const snowContainer = document.getElementById('snow');
-            const flakeCount = 2000;
+      document.addEventListener("DOMContentLoaded", function () {
+        const snowContainer = document.getElementById("snow");
+        const flakeCount = 2000;
 
-            if (snowContainer) {
-                for (let i = 0; i < flakeCount; i++) {
-                    const flake = document.createElement('div');
-                    flake.className = 'flake';
-                    snowContainer.appendChild(flake);
-                }
-            }
-        });
+        if (snowContainer) {
+          for (let i = 0; i < flakeCount; i++) {
+            const flake = document.createElement("div");
+            flake.className = "flake";
+            snowContainer.appendChild(flake);
+          }
+        }
+      });
     </script>
     {% block extra_js %}{% endblock %}
-</body>
+  </body>
 </html>

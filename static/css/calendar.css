@@ -1,0 +1,66 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 30px 30px 0;
+}
+
+.logo {
+  width: 80px;
+  height: 35px;
+  align-items: center;
+}
+
+.info1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  position: relative;
+  right: 5px;
+}
+
+.info1 .info_text {
+  margin-top: 3px;
+}
+
+.info_text {
+  color: white;
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.calendar-container {
+  padding: 0;
+}
+
+.bell {
+  width: 50px;
+  height: 38px;
+}
+
+.bell_x {
+  opacity: 0.5;
+}
+
+.calendar-day {
+  text-decoration: none;
+  color: white;
+  font-size: 12px;
+}
+
+.example-container {
+  overflow-y: auto;
+}
+
+.example-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.example-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.example-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}

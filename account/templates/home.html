@@ -1,9 +1,4 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}홈{% endblock %}
-
-{% block extra_css %}
+{% extends 'base.html' %} {% load static %} {% block title %}홈{% endblock %} {% block extra_css %}
 <style>
     .home-container {
         width: 100%;
@@ -188,15 +183,12 @@
         background: rgba(0, 0, 0, 0.1);
         border-radius: 3px;
     }
-
 </style>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="home-container">
-    <div class="date-text">{{ today|date:"Y년 m월 d일" }}</div>
-    <div class="d-day-text">D-{{ d_day }}</div>
-    
+  <div class="date-text">{{ today|date:"Y년 m월 d일" }}</div>
+  <div class="d-day-text">D-{{ d_day }}</div>
+
     <a href="{% url 'question_detail' today.day %}">
         <img src="{% static 'assets/img/bell_main.png' %}" alt="벨 이미지" class="bell-image">
     </a>
@@ -226,13 +218,10 @@
         </a>
     </div>
 
-    <div class="copy-text">Copyright &copy; 2024. 멋쟁이 사자처럼<br>
-    4호선톤 3조 All rights reserved.</div>
-    <br><br>
+  <div>Copyright &copy; 2024. 멋쟁이 사자처럼</div>
+  <div>4호선톤 3조 All rights reserved.</div>
 </div>
-{% endblock %}
-
-{% block extra_js %}
+{% endblock %} {% block extra_js %}
 <script>
     let isPlaying = {{ isPlaying|yesno:"true,false" }};
     let audio = new Audio("{% static 'assets/audio/bgm.mp3' %}");

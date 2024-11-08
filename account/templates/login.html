@@ -1,15 +1,42 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block title %}로그인{% endblock %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+<script src="{% static 'js/login.js' %}" defer></script>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
 
-{% block title %}로그인{% endblock %}
+<div class="container" style="width: 100%">
+  <header>
+    <div class="logo-div">
+      <img src="{% static 'assets/img/logo.png' %}" />
+    </div>
+  </header>
 
-{% block content %}
-<div class="container">
-    <h1>로그인</h1>
+  <div class="form-div">
     <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="button">로그인</button>
+      {% csrf_token %}
+      <input id="id_username" name="username" type="text" placeholder="아이디를 입력해주세요" />
+      <input id="id_password" name="password" type="password" placeholder="비밀번호를 입력해주세요" />
+      <button id="login_btn" type="submit" class="button">로그인</button>
     </form>
+  </div>
+
+  <div class="modal">
+    <div class="modal-content">
+      <p style="color: black" id="modal_p">{{message}}</p>
+      <div class="pop_div" onClick="close_pop();">
+        <span class="pop_bt" style="font-size: 12px"> 확인 </span>
+      </div>
+    </div>
+  </div>
+
+  {% if messages %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      {% for message in messages %}
+        showPopup("{{ message }}");
+      {% endfor %}
+    });
+  </script>
+  {% endif %}
 </div>
+
 {% endblock %}
