@@ -91,16 +91,42 @@
         gap: 10px;
     }
 
+    .bgm-button {
+        font-family: var(--main-font);
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--yellow);
+    }
+
+    .logout-button {
+        font-family: var(--main-font);
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+    }
+
+
     button {
-        padding: 8px 16px;
-        border-radius: 5px;
+        padding: 5px 10px;
+        border-radius: 10px;
+        background: none;
         border: none;
-        background-color: #FFD739;
         cursor: pointer;
+        font-family: var(--main-font);
+        font-size: 16px;
+        font-weight: 1000;
     }
 
     button:hover {
-        background-color: #FFE169;
+        background-color: #dbdbdb2a;
+    }
+
+    .copy-text {
+        padding-top: 54px;
+        color: white;
+        font-size: 10px;
+        font-weight: medium;
+        line-height: 20px;
     }
 
     .home-container::-webkit-scrollbar {
@@ -139,12 +165,13 @@
     </div>
 
     <div class="button-container">
-        <button id="bgmButton" onclick="toggleBGM()">{{ isPlaying|yesno:"BGM OFF,BGM ON" }}</button>
-        <a href="{% url 'logout' %}"><button>로그아웃</button></a>
+        <button id="bgmButton" class="bgm-button" onclick="toggleBGM()">{{ isPlaying|yesno:"BGM OFF,BGM ON" }}</button>
+        <img src="{% static 'assets/img/slash.svg' %}" alt="슬래시" class="slash-img">
+        <a href="{% url 'logout' %}"><button class="logout-button">LOGOUT</button></a>
     </div>
 
-    <div>Copyright &copy; 2024. 멋쟁이 사자처럼</div>
-    <div>4호선톤 3조 All rights reserved.</div>
+    <div class="copy-text">Copyright &copy; 2024. 멋쟁이 사자처럼<br>
+    4호선톤 3조 All rights reserved.</div>
 </div>
 {% endblock %}
 
