@@ -47,3 +47,20 @@
   color: white;
   font-size: 12px;
 }
+
+.example-container {
+  overflow-y: auto;
+}
+
+.example-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.example-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.example-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
