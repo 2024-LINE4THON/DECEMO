@@ -1,73 +1,60 @@
-{% extends 'base.html' %} {% load static %} {% block title %}회원가입{% endblock %} {% block extra_css %}
-<style>
-  .container {
-    text-align: center;
-  }
-  #username-check-msg {
-    margin: 5px 0;
-  }
-  .popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-    border-radius: 8px;
-    z-index: 1000;
-  }
-</style>
-{% endblock %} {% block extra_js %}
+{% extends 'base.html' %} {% load static %} {% block title %}회원가입{% endblock %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+<link rel="stylesheet" href="{% static 'css/signup.css' %}" />
+
+<script src="{% static 'js/signup.js' %}" defer></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-  $(document).ready(function () {
-    $("#check-username").click(function () {
-      const username = $("#id_username").val();
-      $.ajax({
-        url: '{% url "check_username" %}',
-        data: { username: username },
-        dataType: "json",
-        success: function (data) {
-          if (data.is_taken) {
-            showPopup("중복되는 아이디입니다.");
-          } else {
-            showPopup("사용 가능한 아이디입니다.");
-          }
-        },
-      });
-    });
-  });
-
-  function showPopup(message) {
-    const popup = document.getElementById("error-popup");
-    popup.innerText = message;
-    popup.style.display = "block";
-    setTimeout(() => (popup.style.display = "none"), 3000);
-  }
+  var checkUsernameUrl = "{% url 'check_username' %}";
 </script>
-{% endblock %} {% block content %}
-<div class="container">
-  <h1>회원가입</h1>
-  <form method="POST">
-    {% csrf_token %} {{ form.username.label_tag }} {{ form.username }}
-    <button type="button" id="check-username" class="button">중복 확인</button>
-    <div id="username-check-msg"></div>
-    <br /><br />
-    {{ form.password.label_tag }} {{ form.password }}<br /><br />
-    {{ form.password_confirm.label_tag }} {{ form.password_confirm }}<br /><br />
-    <button type="submit" class="button">회원가입</button>
-  </form>
 
-  <div id="error-popup" class="popup"></div>
+<body>
+  <!-- 모달 창 -->
+  <div class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <p style="color: black" id="modal_p">{{message}}</p>
+      <div class="pop_div" onClick="close_pop();">
+        <span class="pop_bt" style="font-size: 12px"> 확인 </span>
+      </div>
+    </div>
+  </div>
+  <!-- 모달 창 -->
 
-  {% if messages %}
-  <script>
-    {% for message in messages %}
-        showPopup("{{ message }}");
-    {% endfor %}
-  </script>
-  {% endif %}
-</div>
+  <div class="container" style="width: 100%">
+    <header>
+      <div class="logo-div">
+        <img src="{% static 'assets/img/logo.png' %}" />
+      </div>
+    </header>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="id-check">
+        <input id="id_username" name="username" type="text" placeholder="아이디를 입력해주세요" />
+        <button type="button" id="check-username" class="button">중복 확인</button>
+      </div>
+
+      <div class="password">
+        <input id="id_password" name="password" type="password" placeholder="비밀번호를 입력해주세요" />
+        <p>*영문 / 숫자 포함 8글자 이상 입력해주세요</p>
+      </div>
+
+      <input id="id_password_confirm" name="password_confirm" type="password" placeholder="비밀번호를 다시 입력해주세요" />
+      <div id="username-check-msg"></div>
+      <button id="login_btn" type="submit" class="button">회원가입</button>
+    </form>
+
+    {% if messages %}
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        {% for message in messages %}
+          showPopup("{{ message }}");
+        {% endfor %}
+      });
+    </script>
+    {% endif %}
+  </div>
+</body>
+
 {% endblock %}
