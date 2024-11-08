@@ -19,7 +19,7 @@
         font-family: var(--main-font);
         font-size: 20px;
         font-weight: normal;
-        margin: 50px 0;
+        margin: 60px 0 20px 0;
         text-align: center;
         color: #ffffff;
     }
@@ -41,33 +41,33 @@
     }
 
     .progress-container {
-    width: 100%;
-    margin-top: 20px;
-    text-align: center;
-}
+        width: 100%;
+        margin-top: 20px;
+        text-align: center;
+    }
 
-.progress-content {
-    color: #ffffff;
-    font-size: 16px;
-    display: flex;           
-    align-items: center;    
-    justify-content: center; 
-    gap: 5px;               
-    margin-bottom: 10px;   
-}
+    .progress-content {
+        color: #ffffff;
+        font-size: 16px;
+        display: flex;           
+        align-items: center;    
+        justify-content: center; 
+        gap: 5px;               
+        margin-bottom: 10px;   
+    }
 
-.id-text {
-    font-family: var(--eng-font);
-    color: #ffffff;
-    font-size: 20px;
-    font-style: italic;
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.2),
-                0 0 2px  rgba(255, 255, 255, 0.3),
-                0 0 3px rgba(255, 255, 255, 0.4),
-                0 0 10px rgba(255, 255, 255, 0.6),
-                0 0 30px rgba(255, 255, 255, 0.7),
-                0 0 50px rgba(255, 255, 255, 0.9);
-}
+    .id-text {
+        font-family: var(--eng-font);
+        color: #ffffff;
+        font-size: 20px;
+        font-style: italic;
+        text-shadow: 0 0 1px rgba(255, 255, 255, 0.2),
+                    0 0 2px  rgba(255, 255, 255, 0.3),
+                    0 0 3px rgba(255, 255, 255, 0.4),
+                    0 0 10px rgba(255, 255, 255, 0.6),
+                    0 0 30px rgba(255, 255, 255, 0.7),
+                    0 0 50px rgba(255, 255, 255, 0.9);
+    }
 
     .progress-bar {
         width: 80%;
@@ -97,29 +97,40 @@
         gap: 10px;
     }
 
-    .bgm-button {
+
+    .bgm-button, .logout-button {
         font-family: var(--main-font);
         font-size: 16px;
         font-weight: bold;
-        color: var(--yellow);
-        transition: color 0.3s ease;
         display: flex;
         align-items: center;
         gap: 5px;
         padding: 5px 10px;
+        transition: color 0.3s ease;
+    }
+
+    .bgm-button {
+        color: var(--yellow);
     }
 
     .bgm-button-off {
         color: white;
     }
 
-    .sound-icon {
+    .logout-button {
+        color: white;
+    }
+
+    .sound-icon, .logout-icon {
         width: 20px;
         height: 20px;
+    }
+
+
+    .sound-icon {
         display: none;
     }
 
-    /* BGM이 켜져있을 때 */
     .bgm-button .sound-on {
         display: block;
     }
@@ -128,7 +139,6 @@
         display: none;
     }
 
-    /* BGM이 꺼져있을 때 */
     .bgm-button.bgm-button-off .sound-on {
         display: none;
     }
@@ -137,11 +147,8 @@
         display: block;
     }
 
-    .logout-button {
-        font-family: var(--main-font);
-        font-size: 16px;
-        font-weight: bold;
-        color: white;
+    .logout-icon {
+        display: block;
     }
 
 
@@ -211,7 +218,12 @@
             <span>{{ isPlaying|yesno:"BGM ON,BGM OFF" }}</span>
         </button>
         <img src="{% static 'assets/img/slash.svg' %}" alt="슬래시" class="slash-img">
-        <a href="{% url 'logout' %}"><button class="logout-button">LOGOUT</button></a>
+        <a href="{% url 'logout' %}">
+            <button class="logout-button">
+                <img src="{% static 'assets/img/log-out.png' %}" alt="logout" class="logout-icon">
+                <span>LOGOUT</span>
+            </button>
+        </a>
     </div>
 
     <div class="copy-text">Copyright &copy; 2024. 멋쟁이 사자처럼<br>
