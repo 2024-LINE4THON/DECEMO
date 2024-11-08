@@ -62,10 +62,9 @@ p {
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 12%;
+  margin: 25% auto;
+  padding: 15px;
+  width: 20%;
   border-radius: 15px;
   border: 1px solid #ffd739;
   display: flex;
@@ -99,4 +98,21 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.container {
+  overflow-y: auto;
+}
+
+.container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
 }

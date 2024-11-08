@@ -1,3 +1,7 @@
+@import url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css');
+@import url('https://fonts.cdnfonts.com/css/univers-condensed-2');
+
+
 :root {
     /* 색상 */
     --main-bg: #333333;
@@ -5,22 +9,32 @@
     --snow-color: #ffffff;
     --smoke-color: #e0e0e0;
     --yellow: #FFD52B;
-    
+
+    /* 폰트 */
+    --main-font: 'Apple SD Gothic Neo', sans-serif;
+    --eng-font: 'Univers Light Condensed', sans-serif;
+
+    /* 컨테이너 제한 */
     --container-width: 320px;
     --container-min-width: 320px;
+    --container-height: 624px;
+    --nav-height: 60px;
+    --content-height: calc(var(--container-height) - var(--nav-height));
+    --snowbill-height: 77px;
+    --bottom-elements-height: calc(var(--nav-height) + var(--snowbill-height));
 
     /* Z-index */
     --z-background: -10;
     --z-animations: -10;
     --z-content: 20;
-
-    --nav-height: 83.5px;
     --z-navbar: 30;
+    
     --nav-active-color: #FFD52B;
     --nav-inactive-color: #2A2A2A;
 }
 
 body {
+    font-family: var(--main-font);
     margin: 0;
     padding: 0;
     width: 100%;
@@ -47,7 +61,8 @@ body {
     background-size: contain;
     background-position: center top;
     background-repeat: no-repeat;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     position: relative;
     background-color: #ffffff;
 }
@@ -56,27 +71,57 @@ body {
     box-sizing: border-box;
     z-index: var(--z-content);
     width: 100%;
-    height: 100%;
-    padding: 20px;
+    height: calc(100% - var(--bottom-elements-height) + 12px);
+    overflow-y: auto;
     display: flex;
+    padding-bottom: 0px;
     flex-direction: column;
     align-items: center;
 }
 
 /* Navbar 스타일 */
-.nav-box {
-    width: var(--container-width);
-    height: var(--nav-height);
-    background-color: #ffffff;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+
+.bottom-fixed-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 40;
+}
+
+.snowbill-container {
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+}
+
+.snowbill {
+    max-width: 100%;
+    height: auto;
+}
+
+.nav-box {
+    position: relative;
+    width: 100%; 
+    height: var(--nav-height);
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 15px 0;
+    z-index: var(--z-navbar);
+}
+
+a.no-underline {
+    text-decoration: none !important;
 }
 
 .icon-box {
-    width: var(--container-width);
+    width: 100%;
     display: flex;
     justify-content: center;
     gap: 100px;
@@ -91,15 +136,14 @@ body {
     gap: 5px;
 }
 
-.icon-img {
-    width: 25px !important;
-    height: 25px !important;
-    object-fit: contain;
-}
-
-.icon-img.date-img {
+.home-img {
     width: 27.5px !important;
     height: 27.5px !important;
+}
+
+.date-img {
+    width: 25px !important;
+    height: 25px !important;
 }
 
 .home-icon div, .date-icon div {
@@ -110,4 +154,18 @@ body {
 
 .home-icon.active div, .date-icon.active div {
     color: var(--nav-active-color);
+}
+
+/* 스크롤바 스타일링 (선택사항) */
+.page-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.page-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.page-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
 }

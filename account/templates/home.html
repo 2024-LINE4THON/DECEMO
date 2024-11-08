@@ -1,93 +1,143 @@
 {% extends 'base.html' %} {% load static %} {% block title %}홈{% endblock %} {% block extra_css %}
 <style>
-  .home-container {
+      .home-container {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          box-sizing: border-box;
+          overflow-y: auto;
+      }
+
+      .date-text {
+          font-family: var(--main-font);
+          font-size: 20px;
+          font-weight: normal;
+          margin: 50px 0;
+          text-align: center;
+          color: #ffffff;
+      }
+
+      .d-day-text {
+          font-family: var(--main-font);
+          font-weight: medium;
+          font-size: 64px;
+          text-align: center;
+          color: #ffffff;
+      }
+
+      .bell-image {
+          width: 190px;
+          height: auto;
+          margin-top: 20px;
+          margin-bottom: 30px;
+          display: block;
+      }
+
+      .progress-container {
       width: 100%;
-      height: 100%;
+      margin-top: 20px;
+      text-align: center;
+  }
+
+  .progress-content {
+      color: #ffffff;
+      font-size: 16px;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      padding: 20px;
-      box-sizing: border-box;
-  }
-
-  .date-text, .d-day-text {
-      font-size: 1.5em;
-      font-weight: bold;
-      margin: 10px 0;
-      text-align: center;
-  }
-
-  .bell-image {
-      width: 100px;
-      height: auto;
-      margin-top: 20px;
-      display: block;
-  }
-
-  .progress-container {
-      width: 100%;
-      margin-top: 20px;
-      text-align: center;
-  }
-
-  .progress-bar {
-      width: 80%;
-      height: 25px;
-      background-color: #e0e0e0;
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 10px auto;
-  }
-
-  .progress-bar-fill {
-      height: 100%;
-      background-color: #FFD739;
-      width: {{ progress_percentage }}%;
-  }
-
-  .button-container {
-      width: 100%;
-      margin-top: 20px;
-      display: flex;
       justify-content: center;
-      gap: 10px;
+      gap: 5px;
+      margin-bottom: 10px;
   }
 
-  button {
-      padding: 8px 16px;
-      border-radius: 5px;
-      border: none;
-      background-color: #FFD739;
-      cursor: pointer;
+  .id-text {
+      font-family: var(--eng-font);
+      color: #ffffff;
+      font-size: 20px;
+      font-style: italic;
   }
 
-  button:hover {
-      background-color: #FFE169;
-  }
+      .progress-bar {
+          width: 80%;
+          height: 25px;
+          background-color: #e0e0e0;
+          border-radius: 10px;
+          overflow: hidden;
+          margin: 10px auto;
+      }
+
+      .progress-bar-fill {
+          height: 100%;
+          background-color: #FFD739;
+          width: {{ progress_percentage }}%;
+      }
+
+      .total-text {
+          font-size: 12px;
+          color: white;
+      }
+
+      .button-container {
+          width: 100%;
+          margin-top: 20px;
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+      }
+
+      button {
+          padding: 8px 16px;
+          border-radius: 5px;
+          border: none;
+          background-color: #FFD739;
+          cursor: pointer;
+      }
+
+      button:hover {
+          background-color: #FFE169;
+      }
+
+      .home-container::-webkit-scrollbar {
+      width: 6px;
+      }
+
+      .home-container::-webkit-scrollbar-track {
+          background: transparent;
+      }
+
+      .home-container::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.1);
+          border-radius: 3px;
+      }
 </style>
 {% endblock %} {% block content %}
 <div class="home-container">
-  <h1>홈</h1>
-  <p class="date-text">{{ today|date:"Y년 m월 d일" }}</p>
-  <p class="d-day-text">D-{{ d_day }}</p>
+  <div class="date-text">{{ today|date:"Y년 m월 d일" }}</div>
+  <div class="d-day-text">D-{{ d_day }}</div>
 
   <a href="{% url 'question_detail' today.day %}">
     <img src="{% static 'assets/img/bell_main.png' %}" alt="벨 이미지" class="bell-image" />
   </a>
 
-  <div class="progress-container">
-    <p>{{ username }}님의 진행률</p>
+  <div class="progress-contai ner">
+    <div class="progress-content">
+      <div class="id-text">{{ username }}</div>
+      님의 진행률
+    </div>
     <div class="progress-bar">
       <div class="progress-bar-fill"></div>
     </div>
-    <p>총 {{ total_questions }}일 중 {{ answered_count }}일 작성했어요!</p>
+    <p class="total-text">총 {{ total_questions }}일 중 {{ answered_count }}일 작성했어요!</p>
   </div>
 
   <div class="button-container">
     <button id="bgmButton" onclick="toggleBGM()">{{ isPlaying|yesno:"BGM OFF,BGM ON" }}</button>
     <a href="{% url 'logout' %}"><button>로그아웃</button></a>
-    <a href="{% url 'calendar' %}"><button>캘린더</button></a>
   </div>
+
+  <div>Copyright &copy; 2024. 멋쟁이 사자처럼</div>
+  <div>4호선톤 3조 All rights reserved.</div>
 </div>
 {% endblock %} {% block extra_js %}
 <script>

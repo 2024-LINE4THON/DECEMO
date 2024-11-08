@@ -4,9 +4,30 @@
 {% block title %}Decemo{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>첫 화면</h1>
+<style>
+    .container {
+        margin-top: 68px;
+    }
 
+    .inform-text {
+        font-family: var(--main-font);
+        font-weight: 100;
+        font-size: 18px;
+        color: white;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .decemo-logo, #decemo-logo {
+    font-family: var(--eng-font);
+    color: #ffffff;
+    font-size: 50px;
+    }
+</style>
+<div class="container">
+    <div class="inform-text">한 해를 마무리하는<br>가장 좋은 방법</div>
+    <div class="decemo-logo" id="decemo-logo">DECEMO</div>
+    <!-- <img class="index-bell" src="{% static 'assets/img/bell_main.png' %}" alt="벨 이미지" class="bell-image"> -->
     <a href="{% url 'login' %}" class="button">로그인</a>
     <a href="{% url 'signup' %}" class="button">회원가입</a>
 </div>

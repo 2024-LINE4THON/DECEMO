@@ -54,3 +54,20 @@ input::placeholder {
   position: fixed;
   top: 448px;
 }
+
+.container {
+  overflow-y: auto;
+}
+
+.container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
