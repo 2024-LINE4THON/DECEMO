@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from question.models import Answer
+from django.contrib import messages
 
 def signup(request):
     if request.method == 'POST':
@@ -37,7 +38,7 @@ def login(request):
                 auth_login(request, user)
                 return redirect('home')
             else:
-                form.add_error(None, "아이디 또는 비밀번호가 올바르지 않습니다.")
+                messages.error(request, "존재하지 않는 아이디 혹은 잘못된 비밀번호입니다.")
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})

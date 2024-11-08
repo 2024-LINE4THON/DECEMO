@@ -11,31 +11,48 @@
     #username-check-msg {
         margin: 5px 0;
     }
+    .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+            border-radius: 8px;
+            z-index: 1000;
+        }
 </style>
 {% endblock %}
 
 {% block extra_js %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#check-username').click(function() {
-            const username = $('#id_username').val();
-            $.ajax({
-                url: '{% url "check_username" %}',
-                data: {
-                    'username': username
-                },
-                dataType: 'json',
-                success: function(data) {
-                    if (data.is_taken) {
-                        $('#username-check-msg').text('이미 존재하는 아이디입니다.');
-                    } else {
-                        $('#username-check-msg').text('사용 가능한 아이디입니다.');
+        $(document).ready(function() {
+            $('#check-username').click(function() {
+                const username = $('#id_username').val();
+                $.ajax({
+                    url: '{% url "check_username" %}',
+                    data: { 'username': username },
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.is_taken) {
+                            showPopup("중복되는 아이디입니다.");
+                        } else {
+                            showPopup("사용 가능한 아이디입니다.");
+                        }
                     }
-                }
+                });
             });
         });
-    });
+
+        function showPopup(message) {
+            const popup = document.getElementById("error-popup");
+            popup.innerText = message;
+            popup.style.display = "block";
+            setTimeout(() => popup.style.display = "none", 3000);
+        }
 </script>
 {% endblock %}
 
@@ -52,12 +69,15 @@
         {{ form.password_confirm.label_tag }} {{ form.password_confirm }}<br><br>
         <button type="submit" class="button">회원가입</button>
     </form>
-    <div style="color: red; margin-top: 10px;">
-        {% for field in form %}
-            {% for error in field.errors %}
-                <p>{{ error }}</p>
+
+    <div id="error-popup" class="popup"></div>
+
+    {% if messages %}
+        <script>
+            {% for message in messages %}
+                showPopup("{{ message }}");
             {% endfor %}
-        {% endfor %}
-    </div>
+        </script>
+    {% endif %}
 </div>
 {% endblock %}
