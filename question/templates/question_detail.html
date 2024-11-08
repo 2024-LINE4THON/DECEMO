@@ -2,25 +2,27 @@
 <link rel="stylesheet" href="{% static 'css/question_detail.css' %}" />
 {% endblock %} {% block content %}
 <body>
-  <header>
-    <a href="{% url 'calendar' %}" class="go-calendar"> < </a>
-    <h1 class="date">{{ question.date|date:"Y년 n월 j일" }}</h1>
-  </header>
+  <div class="modal-back">
+    <header>
+      <a href="{% url 'calendar' %}" class="go-calendar"> < </a>
+      <h1 class="date">{{ question.date|date:"Y년 n월 j일" }}</h1>
+    </header>
 
-  <hr />
+    <hr />
 
-  <div class="question_position">
-    <div class="question">{{ question.text }}</div>
+    <div class="question_position">
+      <div class="question">{{ question.text }}</div>
+    </div>
+
+    {% if message %}
+    <p>{{ message }}</p>
+    {% else %}
+    <form method="post" class="answer">
+      {% csrf_token %}
+      <div class="text-box">{{ form.response }}</div>
+      <div class="submit-btn"><button type="button" class="submit">저장</button></div>
+    </form>
   </div>
-
-  {% if message %}
-  <p>{{ message }}</p>
-  {% else %}
-  <form method="post" class="answer">
-    {% csrf_token %}
-    <div class="text-box">{{ form.response }}</div>
-    <div class="submit-btn"><button type="button" class="submit">저장</button></div>
-  </form>
 
   <div class="modal" style="display: none">
     <div class="modal-popup">

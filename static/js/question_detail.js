@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const modal = document.querySelector(".modal");
   const modal_popup = document.querySelector(".modal-popup");
   const modalClose = document.querySelector(".close_btn");
+  const modal_back = document.querySelector(".modal-back");
 
   // 입력 시 저장 버튼 활성화
   if (textBox) {
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (data.status === "success") {
             modal_popup.style.display = "flex"; // 성공 시 모달창 표시
             modal.style.display = "flex";
-            modal.style.filter = "blur(10px)";
+            modal_back.style.filter = "blur(10px)";
           }
         })
         .catch((error) => console.error("Error:", error));
