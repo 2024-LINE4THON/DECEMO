@@ -61,6 +61,12 @@
     color: #ffffff;
     font-size: 20px;
     font-style: italic;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.2),
+                0 0 2px  rgba(255, 255, 255, 0.3),
+                0 0 3px rgba(255, 255, 255, 0.4),
+                0 0 10px rgba(255, 255, 255, 0.6),
+                0 0 30px rgba(255, 255, 255, 0.7),
+                0 0 50px rgba(255, 255, 255, 0.9);
 }
 
     .progress-bar {
@@ -96,6 +102,11 @@
         font-size: 16px;
         font-weight: bold;
         color: var(--yellow);
+        transition: color 0.3s ease;
+    }
+
+    .bgm-button-off {
+        color: white;
     }
 
     .logout-button {
@@ -122,6 +133,7 @@
     }
 
     .copy-text {
+        text-align: center;
         padding-top: 54px;
         color: white;
         font-size: 10px;
@@ -165,13 +177,14 @@
     </div>
 
     <div class="button-container">
-        <button id="bgmButton" class="bgm-button" onclick="toggleBGM()">{{ isPlaying|yesno:"BGM OFF,BGM ON" }}</button>
+        <button id="bgmButton" class="bgm-button" onclick="toggleBGM()">{{ isPlaying|yesno:"BGM ON,BGM OFF" }}</button>
         <img src="{% static 'assets/img/slash.svg' %}" alt="슬래시" class="slash-img">
         <a href="{% url 'logout' %}"><button class="logout-button">LOGOUT</button></a>
     </div>
 
     <div class="copy-text">Copyright &copy; 2024. 멋쟁이 사자처럼<br>
     4호선톤 3조 All rights reserved.</div>
+    <br><br>
 </div>
 {% endblock %}
 
@@ -184,6 +197,9 @@
     window.onload = function() {
         if (isPlaying) {
             audio.play();
+        } else {
+            // 페이지 로드 시 BGM이 꺼져있으면 버튼 스타일 적용
+            document.getElementById('bgmButton').classList.add('bgm-button-off');
         }
     };
 
@@ -192,8 +208,10 @@
             isPlaying = !isPlaying;
             if (isPlaying) {
                 audio.play();
+                document.getElementById('bgmButton').classList.remove('bgm-button-off');
             } else {
                 audio.pause();
+                document.getElementById('bgmButton').classList.add('bgm-button-off');
             }
             updateButton();
         });
@@ -201,7 +219,7 @@
 
     function updateButton() {
         const button = document.getElementById('bgmButton');
-        button.textContent = isPlaying ? "BGM OFF" : "BGM ON";
+        button.textContent = isPlaying ? "BGM ON" : "BGM OFF";
     }
 </script>
 {% endblock %}
