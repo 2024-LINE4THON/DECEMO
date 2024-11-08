@@ -103,10 +103,38 @@
         font-weight: bold;
         color: var(--yellow);
         transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 10px;
     }
 
     .bgm-button-off {
         color: white;
+    }
+
+    .sound-icon {
+        width: 20px;
+        height: 20px;
+        display: none;
+    }
+
+    /* BGM이 켜져있을 때 */
+    .bgm-button .sound-on {
+        display: block;
+    }
+
+    .bgm-button .sound-off {
+        display: none;
+    }
+
+    /* BGM이 꺼져있을 때 */
+    .bgm-button.bgm-button-off .sound-on {
+        display: none;
+    }
+
+    .bgm-button.bgm-button-off .sound-off {
+        display: block;
     }
 
     .logout-button {
@@ -177,7 +205,11 @@
     </div>
 
     <div class="button-container">
-        <button id="bgmButton" class="bgm-button" onclick="toggleBGM()">{{ isPlaying|yesno:"BGM ON,BGM OFF" }}</button>
+        <button id="bgmButton" class="bgm-button" onclick="toggleBGM()">
+            <img src="{% static 'assets/img/sound-on.png' %}" alt="sound on" class="sound-icon sound-on">
+            <img src="{% static 'assets/img/sound-off.png' %}" alt="sound off" class="sound-icon sound-off">
+            <span>{{ isPlaying|yesno:"BGM ON,BGM OFF" }}</span>
+        </button>
         <img src="{% static 'assets/img/slash.svg' %}" alt="슬래시" class="slash-img">
         <a href="{% url 'logout' %}"><button class="logout-button">LOGOUT</button></a>
     </div>
@@ -198,7 +230,6 @@
         if (isPlaying) {
             audio.play();
         } else {
-            // 페이지 로드 시 BGM이 꺼져있으면 버튼 스타일 적용
             document.getElementById('bgmButton').classList.add('bgm-button-off');
         }
     };
@@ -219,7 +250,8 @@
 
     function updateButton() {
         const button = document.getElementById('bgmButton');
-        button.textContent = isPlaying ? "BGM ON" : "BGM OFF";
+        const spanText = button.querySelector('span');
+        spanText.textContent = isPlaying ? "BGM ON" : "BGM OFF";
     }
 </script>
 {% endblock %}
