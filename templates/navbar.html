@@ -1,13 +1,39 @@
 {% load static %}
-<div class="nav-box">
-    <div class="icon-box">
-        <div class="home-icon active">
-            <img src="{% static 'assets/img/home-ON.png' %}" alt="홈" class="icon-img">
-            <div>홈</div>
+<div class="bottom-fixed-container">
+    <div class="snowbill-container">
+        <img src="{% static 'assets/img/snowbill.png' %}" alt="마을" class="snowbill">
+    </div>
+
+    <!-- 연기 효과 -->
+    <div class="smoke-container">
+        <div id="box">
+            <div id="chimney-main">
+                <div id="chimney-smoke-box">
+                    <div id="chimney-smoke1" class="chimney-smoke"></div>
+                    <div id="chimney-smoke2" class="chimney-smoke"></div>
+                    <div id="chimney-smoke3" class="chimney-smoke"></div>
+                    <div id="chimney-smoke4" class="chimney-smoke"></div>
+                    <div id="chimney-smoke5" class="chimney-smoke"></div>
+                    <div id="chimney-smoke6" class="chimney-smoke"></div>
+                </div>
+            </div>
         </div>
-        <div class="date-icon">
-            <img src="{% static 'assets/img/date-OFF.png' %}" alt="날짜" class="icon-img date-img">
-            <div>캘린더</div>
+    </div>
+
+    <div class="nav-box">
+        <div class="icon-box">
+            <a href="{% url 'home' %}" class="no-underline">
+                <div class="home-icon active">
+                    <img src="{% static 'assets/img/home-ON.png' %}" alt="홈" class="icon-img home-img">
+                    <div>홈</div>
+                </div>
+            </a>
+            <a href="{% url 'calendar' %}" class="no-underline">
+                <div class="date-icon">
+                    <img src="{% static 'assets/img/date-OFF.png' %}" alt="날짜" class="icon-img date-img">
+                    <div>캘린더</div>
+                </div>
+            </a>
         </div>
     </div>
 </div>

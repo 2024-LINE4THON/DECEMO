@@ -1,12 +1,13 @@
 .smoke-container {
-    position: fixed;
-    left: 50%;
-    transform: translate(88%, -10%);
-    width: 100px;
-    height: 100px;
+    position: absolute; /* 부모 컨테이너 내에서 절대 위치 */
+    bottom: 150px; /*  [연기 효과의 위치] 예: 60px; 필요에 따라 조정 */
+    left: 92%;
+    transform: translateX(-50%);
+    width: 100px; /* 연기 효과의 너비 */
+    height: 100px; /* 연기 효과의 높이 */
     pointer-events: none;
+    z-index: 45; /* `snowbill.png` 위에 오도록 z-index 조정 */
 }
-
 
 #chimney-main {
     position: absolute;
@@ -21,6 +22,7 @@
     position: absolute;
     width: 15px; 
 }
+
 
 @keyframes smoke {
     0% {
