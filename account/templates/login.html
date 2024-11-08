@@ -4,6 +4,28 @@
 {% block title %}로그인{% endblock %}
 
 {% block content %}
+<style>
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+        border-radius: 8px;
+        z-index: 1000;
+    }
+</style>
+<script>
+    function showPopup(message) {
+        const popup = document.getElementById("error-popup");
+        popup.innerText = message;
+        popup.style.display = "block";
+        setTimeout(() => popup.style.display = "none", 3000);
+    }
+</script>
 <div class="container">
     <h1>로그인</h1>
     <form method="POST">
@@ -11,5 +33,14 @@
         {{ form.as_p }}
         <button type="submit" class="button">로그인</button>
     </form>
+    <div id="error-popup" class="popup"></div>
+
+    {% if messages %}
+        <script>
+            {% for message in messages %}
+                showPopup("{{ message }}");
+            {% endfor %}
+        </script>
+    {% endif %}
 </div>
 {% endblock %}
