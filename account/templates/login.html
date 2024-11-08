@@ -9,13 +9,42 @@
     </div>
   </header>
 
+<<<<<<< HEAD
   <div class="form-div">
+=======
+{% block content %}
+<style>
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+        border-radius: 8px;
+        z-index: 1000;
+    }
+</style>
+<script>
+    function showPopup(message) {
+        const popup = document.getElementById("error-popup");
+        popup.innerText = message;
+        popup.style.display = "block";
+        setTimeout(() => popup.style.display = "none", 3000);
+    }
+</script>
+<div class="container">
+    <h1>로그인</h1>
+>>>>>>> cdf50e12c573cddb0ebf92d6ee16eee8e3656ee6
     <form method="POST">
       {% csrf_token %}
       <input id="id_username" name="username" type="text" placeholder="아이디를 입력해주세요" maxlength="20" required />
       <input id="id_password" name="password" type="password" placeholder="비밀번호를 입력해주세요" minlength="8" required />
       <button id="login_btn" type="submit" class="button">로그인</button>
     </form>
+<<<<<<< HEAD
   </div>
 
   <!-- <div style="color: red; margin-top: 10px">
@@ -23,6 +52,17 @@
     <p>{{ error }}</p>
     {% endfor %} {% endfor %}
   </div> -->
+=======
+    <div id="error-popup" class="popup"></div>
+
+    {% if messages %}
+        <script>
+            {% for message in messages %}
+                showPopup("{{ message }}");
+            {% endfor %}
+        </script>
+    {% endif %}
+>>>>>>> cdf50e12c573cddb0ebf92d6ee16eee8e3656ee6
 </div>
 
 {% endblock %}
