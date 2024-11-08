@@ -1,10 +1,6 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %}질문 상세{% endblock %}
-{% block extra_css %}
+{% extends 'base.html' %} {% load static %} {% block title %}질문 상세{% endblock %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/question_detail.css' %}" />
-{% endblock %}
-{% block content %}
+{% endblock %} {% block content %}
 <body>
   <header>
     <a href="{% url 'calendar' %}" class="go-calendar"> < </a>
@@ -16,7 +12,6 @@
   <div class="question_position">
     <div class="question">{{ question.text }}</div>
   </div>
-  
 
   {% if message %}
   <p>{{ message }}</p>
@@ -27,7 +22,7 @@
     <div class="submit-btn"><button type="button" class="submit">저장</button></div>
   </form>
 
-  <div class="modal" style="display: none;">
+  <div class="modal" style="display: none">
     <div class="modal-popup">
       <h3>저장되었습니다.</h3>
       <button type="button" class="close_btn">확인</button>
@@ -35,7 +30,6 @@
   </div>
   {% endif %}
 </body>
-{% endblock %}
-{% block extra_js %}
-  <script src="{% static 'js/question_detail.js' %}"></script>
+{% endblock %} {% block extra_js %}
+<script src="{% static 'js/question_detail.js' %}"></script>
 {% endblock %}

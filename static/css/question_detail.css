@@ -84,21 +84,34 @@ textarea {
 }
 
 .modal {
-  width: 280px;
-  height: 133px;
-
-  background-color: white;
+  width: 100%;
 
   position: absolute;
   top: 35%;
-
-  border: 1px solid #ffd739;
-  border-radius: 15px;
 
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.modal-popup {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 280px;
+  height: 133px;
+
+  background-color: white;
+  border: 1px solid #ffd739;
+  border-radius: 15px;
+
+  position: absolute;
+  top: 35%;
+
+  z-index: 10;
 }
 
 h3 {
