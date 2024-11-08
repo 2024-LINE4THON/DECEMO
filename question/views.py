@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Question, Answer
 from .forms import AnswerForm
+from django.http import JsonResponse
 
 @login_required
 def calendar_view(request):
@@ -38,7 +39,9 @@ def question_detail(request, day):
             new_answer.user = request.user
             new_answer.question = question
             new_answer.save()
-            return redirect('calendar')
+            # JSON 응답으로 성공 메시지 전달
+            return JsonResponse({'status': 'success'})
+
     else:
         form = AnswerForm()
 
