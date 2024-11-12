@@ -14,8 +14,8 @@
   <div class="modal">
     <!-- Modal content -->
     <div class="modal-content">
-      <p style="color: black" id="modal_p">{{message}}</p>
-      <div class="pop_div" onClick="close_pop();">
+      <p style="color: black; margin-top: 20px" id="modal_p">{{message}}</p>
+      <div class="pop_div" onClick="close_pop();" style="margin-top: 20px">
         <span class="pop_bt" style="font-size: 12px"> 확인 </span>
       </div>
     </div>
@@ -25,7 +25,7 @@
   <div class="container" style="width: 100%">
     <header>
       <div class="logo-div">
-        <img src="{% static 'assets/img/logo.png' %}" />
+        <a href="/account/"><img src="{% static 'assets/img/logo.png' %}" /></a>
       </div>
     </header>
     <form method="POST">

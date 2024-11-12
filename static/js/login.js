@@ -14,7 +14,7 @@ password.addEventListener("input", setColor);
 
 function showPopup(message) {
   $(document).ready(function () {
-    p.innerText = message;
+    p.innerHTML = message;
     $(".modal").show();
   });
 }

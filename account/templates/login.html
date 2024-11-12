@@ -6,7 +6,7 @@
 <div class="container" style="width: 100%">
   <header>
     <div class="logo-div">
-      <img src="{% static 'assets/img/logo.png' %}" />
+      <a href="/account/"> <img src="{% static 'assets/img/logo.png' %}" /></a>
     </div>
   </header>
 
@@ -32,7 +32,8 @@
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       {% for message in messages %}
-        showPopup("{{ message }}");
+        let modifiedMessage = "{{ message }}".replace("혹은", "혹은<br>");
+        showPopup(modifiedMessage);
       {% endfor %}
     });
   </script>
