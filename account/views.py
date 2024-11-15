@@ -52,9 +52,10 @@ def index(request):
 
 @login_required
 def home(request):
-    # 임의로 현재 날짜를 2024년 12월 3일로 설정
-    today = datetime(2024, 12, 3)
-    target_date = datetime(2025, 1, 1)
+    # 실제 오늘 날짜를 가져오되, month를 12로 설정하여 날짜를 임의로 변경
+    today = datetime.now().replace(month=12)
+
+    target_date = datetime(today.year + 1, 1, 1)  # 1월 1일까지 남은 디데이 계산
     d_day = (target_date - today).days  # 남은 일수 계산
     
     is_playing = request.session.get('bgm_playing', True)  # 기본값 True로 설정
