@@ -8,7 +8,15 @@
     .container {
         margin-top: 68px;
         max-width: 320px;
+        overflow-y: auto; 
+        -ms-overflow-style: none;  
+        scrollbar-width: none;   
     }
+
+    .container::-webkit-scrollbar {
+        display: none;           
+    }
+
 
     .inform-text {
         font-family: var(--main-font);

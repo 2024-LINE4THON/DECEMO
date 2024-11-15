@@ -62,16 +62,30 @@
     .progress-bar {
         width: 80%;
         height: 25px;
-        background-color: #e0e0e0;
+        background-color: rgba(218, 218, 218, 0.4);  
         border-radius: 10px;
         overflow: hidden;
         margin: 10px auto;
+        position: relative;
     }
 
     .progress-bar-fill {
         height: 100%;
         background-color: #FFD739;
         width: {{ progress_percentage }}%;
+        position: relative;
+        transition: width 0.3s ease;
+    }
+
+    .percentage-text {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: #a24040;
+        font-size: 14px;
+        font-weight: bold;
+        white-space: nowrap;
     }
 
     .total-text {
@@ -86,7 +100,6 @@
         justify-content: center;
         gap: 10px;
     }
-
 
     .bgm-button, .logout-button {
         font-family: var(--main-font);
@@ -116,7 +129,6 @@
         height: 20px;
     }
 
-
     .sound-icon {
         display: none;
     }
@@ -140,7 +152,6 @@
     .logout-icon {
         display: block;
     }
-
 
     button {
         padding: 5px 10px;
@@ -178,22 +189,78 @@
         background: rgba(0, 0, 0, 0.1);
         border-radius: 3px;
     }
+
+    .logout-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(4px);
+        z-index: 1000;
+    }
+
+    .logout-modal-popup {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 280px;
+        height: 133px;
+        background-color: white;
+        border: 1px solid #FFD739;
+        border-radius: 15px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .modal-buttons {
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .modal-button {
+        padding: 8px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: var(--main-font);
+    }
+
+    .confirm-button {
+        background-color: #FFD739;
+        border: none;
+    }
+
+    .confirm-button:hover {
+        background-color: #FFE169;
+    }
+
+    .cancel-button {
+        background-color: #f0f0f0;
+        border: none;
+    }
 </style>
 {% endblock %} {% block content %}
 <div class="home-container">
-  <div class="date-text">{{ today|date:"Y년 m월 d일" }}</div>
-  <div class="d-day-text">D-{{ d_day }}</div>
+    <div class="date-text">{{ today|date:"Y년 m월 d일" }}</div>
+    <div class="d-day-text">D-{{ d_day }}</div>
 
     <a href="{% url 'question_detail' today.day %}">
         <img src="{% static 'assets/img/bell_main.png' %}" alt="벨 이미지" class="bell-image">
     </a>
 
-    <div class="progress-contai  ner">
+    <div class="progress-container">
         <div class="progress-content">
             <div class="id-text">{{ username }}</div>님의 진행률
         </div>
         <div class="progress-bar">
-            <div class="progress-bar-fill"></div>
+            <div class="progress-bar-fill">
+                <span class="percentage-text">{{ progress_percentage|floatformat:0 }}%</span>
+            </div>
         </div>
         <p class="total-text">총 {{ total_questions }}일 중 {{ answered_count }}일 작성했어요!</p>
     </div>
@@ -205,12 +272,22 @@
             <span>{{ isPlaying|yesno:"BGM ON,BGM OFF" }}</span>
         </button>
         <img src="{% static 'assets/img/slash.svg' %}" alt="슬래시" class="slash-img">
-        <a href="{% url 'logout' %}" style="text-decoration: none;">
-            <button class="logout-button">
-                <img src="{% static 'assets/img/log-out.png' %}" alt="logout" class="logout-icon">
-                <span>LOGOUT</span>
-            </button>
-        </a>
+        <button class="logout-button" onclick="showLogoutModal()">
+            <img src="{% static 'assets/img/log-out.png' %}" alt="logout" class="logout-icon">
+            <span>LOGOUT</span>
+        </button>
+    </div>
+
+    <div class="logout-modal" id="logoutModal">
+        <div class="logout-modal-popup">
+            <p>로그아웃 하시겠어요?</p>
+            <div class="modal-buttons">
+                <a href="{% url 'logout' %}">
+                    <button class="modal-button confirm-button">네</button>
+                </a>
+                <button class="modal-button cancel-button" onclick="hideLogoutModal()">아니요</button>
+            </div>
+        </div>
     </div>
 
     <div class="copy-text">Copyright &copy; 2024. 멋쟁이 사자처럼<br>
@@ -249,6 +326,24 @@
         const button = document.getElementById('bgmButton');
         const spanText = button.querySelector('span');
         spanText.textContent = isPlaying ? "BGM ON" : "BGM OFF";
+    }
+
+    window.onload = function() {
+    const progressBar = document.querySelector('.progress-bar-fill');
+    const percentageText = document.querySelector('.percentage-text');
+    
+    if (progressBar.offsetWidth < percentageText.offsetWidth) {
+        percentageText.style.color = '#000000';  
+        percentageText.style.left = '250%';  
+        }
+    };
+
+    function showLogoutModal() {
+        document.getElementById('logoutModal').style.display = 'block';
+    }
+
+    function hideLogoutModal() {
+        document.getElementById('logoutModal').style.display = 'none';
     }
 </script>
 {% endblock %}
