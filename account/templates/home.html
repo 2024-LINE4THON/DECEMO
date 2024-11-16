@@ -14,9 +14,16 @@
     <div class="date-text">{{ today|date:"Y년 m월 d일" }}</div>
     <div class="d-day-text">D-{{ d_day }}</div>
 
-    <a href="{% url 'question_detail' today.day %}" class="bell-link">
+    <a href="javascript:void(0)" id="bell-link">
         <img src="{% static 'assets/img/bell_main.png' %}" alt="벨 이미지" class="bell-image">
     </a>
+    
+    <div id="popupModal" class="logout-modal" style="display: none;">
+        <div class="logout-modal-popup">
+            <p id="popupMessage"></p>
+            <button class="modal-button confirm-button" onclick="closePopup()">확인</button>
+        </div>
+    </div> 
 
     <div class="progress-container">
         <div class="progress-content">
@@ -133,5 +140,30 @@ let isPlaying = {{ isPlaying|yesno:"true,false" }};
     function hideLogoutModal() {
         document.getElementById('logoutModal').style.display = 'none';
     }
+    document.addEventListener("DOMContentLoaded", () => {
+        const bellLink = document.getElementById("bell-link");
+        const popupModal = document.getElementById("popupModal");
+        const popupMessage = document.getElementById("popupMessage");
+
+        bellLink.addEventListener("click", () => {
+            fetch("{% url 'home' %}", { headers: { "X-Requested-With": "XMLHttpRequest" } })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "exists") {
+                        // 답변이 존재하면 팝업창 표시
+                        popupMessage.textContent = data.message;
+                        popupModal.style.display = "block";
+                    } else {
+                        // 답변이 없으면 질문 상세 페이지로 이동
+                        window.location.href = "{% url 'question_detail' today.day %}";
+                    }
+                });
+        });
+    });
+
+    function closePopup() {
+        document.getElementById("popupModal").style.display = "none";
+    }
+    
 </script>
 {% endblock %}
