@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.models import User
 from .forms import SignUpForm, LoginForm
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from question.models import Answer
+from question.models import Answer, Question
 from django.contrib import messages
 
 def signup(request):
@@ -57,13 +57,24 @@ def home(request):
 
     target_date = datetime(today.year + 1, 1, 1)  # 1월 1일까지 남은 디데이 계산
     d_day = (target_date - today).days  # 남은 일수 계산
-    
+
     is_playing = request.session.get('bgm_playing', True)  # 기본값 True로 설정
 
     # 사용자가 작성한 답변 개수
     total_questions = 31
     answered_count = Answer.objects.filter(user=request.user, question__date__month=12).count()
     progress_percentage = (answered_count / total_questions) * 100
+
+    # 오늘 날짜의 질문에 대해 답변이 존재하는지 확인
+    question = get_object_or_404(Question, date__day=today.day, date__month=12)
+    answer_exists = Answer.objects.filter(user=request.user, question=question).exists()
+
+    # JSON 형태로 응답 처리 (팝업창을 위한 정보 제공)
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return JsonResponse({
+            'status': 'exists' if answer_exists else 'not_exists',
+            'message': "오늘은 이미 답변을 작성했습니다." if answer_exists else ""
+        })
 
     return render(request, 'home.html', {
         'isPlaying': is_playing,
@@ -72,7 +83,8 @@ def home(request):
         'answered_count': answered_count,
         'total_questions': total_questions,
         'progress_percentage': progress_percentage,
-        'username': request.user.username  # 사용자 이름 전달
+        'username': request.user.username,  # 사용자 이름 전달
+        'answer_exists': answer_exists  # 오늘 답변 여부 전달
     })
 
 @login_required
