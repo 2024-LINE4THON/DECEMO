@@ -39,13 +39,13 @@
     <div class="calendar-row">
       {% for day in row %} {% if day in answered_days %}
       <a href="javascript:void(0);" onclick="showAlert()" class="calendar-day">
-        <div>{{ day }}</div>
-        <img class="bell" src="{% static 'assets/img/bell_main.png' %}" /></label>
+        <div class="cal_today">{{ day }}</div>
+        <img class="bell" src="{% static 'assets/img/bell_main.png' %}" data-new-src="{% static 'assets/img/bell_outline.png' %}"/></label>
       </a>
       {% else %}
       <a href="{% url 'question_detail' day %}" class="calendar-day">
-        <div>{{ day }}</div>
-        <img class="bell bell_x" src="{% static 'assets/img/bell_main.png' %}" /></label>
+        <div class="cal_today">{{ day }}</div>
+        <img class="bell bell_x" src="{% static 'assets/img/bell_main.png' %}" data-new-src="{% static 'assets/img/bell_outline.png' %}"/></label>
       </a>
       
       {% endif %}       {% endfor %}
@@ -61,13 +61,23 @@
   document.querySelectorAll(".calendar-day").forEach((dayElement) => {
     const dayNumber = parseInt(dayElement.querySelector("div").textContent.trim()); // 날짜 숫자 추출
 
+    
     if (dayNumber > today && currentMonth === 12) {
+
+      const bellImg = dayElement.querySelector("img");
+      const newSrc = bellImg.dataset.newSrc;
+      bellImg.src = newSrc;
+
       // 이후 날짜 클릭 이벤트 제한
       dayElement.addEventListener("click", function (event) {
         event.preventDefault();
         alert("이후 날짜의 질문은 열람할 수 없습니다.");
       });
+
     }
+    if (dayNumber === today) {
+    dayElement.querySelector(".cal_today").style.color = "#FFD739";
+  }
   });
 
   function showAlert() {
