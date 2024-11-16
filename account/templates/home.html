@@ -62,7 +62,7 @@
 {% endblock %} {% block extra_js %}
 <script>
 let isPlaying = {{ isPlaying|yesno:"true,false" }};
-    let audio = new Audio("{% static 'assets/audio/bgm.mp3' %}");
+    let audio = new Audio("{% static 'assets/audio/main-bgm.mp3' %}");
     let bellSound = new Audio("{% static 'assets/audio/bell-ring.mp3' %}");
     audio.loop = true;
     bellSound.loop = false;  // 벨 소리는 한 번만 재생
