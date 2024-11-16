@@ -55,6 +55,21 @@
 </div>
 {% endblock %} {% block extra_js %}
 <script>
+  const today = new Date().getDate(); // 오늘 날짜 (일)
+  const currentMonth = 12; // 12월로 고정
+
+  document.querySelectorAll(".calendar-day").forEach((dayElement) => {
+    const dayNumber = parseInt(dayElement.querySelector("div").textContent.trim()); // 날짜 숫자 추출
+
+    if (dayNumber > today && currentMonth === 12) {
+      // 이후 날짜 클릭 이벤트 제한
+      dayElement.addEventListener("click", function (event) {
+        event.preventDefault();
+        alert("이후 날짜의 질문은 열람할 수 없습니다.");
+      });
+    }
+  });
+
   function showAlert() {
     alert("해당 날짜는 이미 답변을 작성했습니다.");
   }
