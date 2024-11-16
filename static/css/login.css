@@ -44,6 +44,7 @@ input::placeholder {
 }
 
 #login_btn {
+  font-family: "RIDIBatang", sans-serif;
   width: 158px;
   height: 39px;
   border-radius: 13.46px;

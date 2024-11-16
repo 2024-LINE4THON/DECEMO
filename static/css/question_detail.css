@@ -48,6 +48,7 @@ hr {
 }
 
 textarea {
+  font-family: "RIDIBatang", sans-serif;
   width: 196px;
   height: 167px;
 
@@ -65,6 +66,7 @@ textarea {
 }
 
 .submit {
+  font-family: "RIDIBatang", sans-serif !important;
   width: 108px;
   height: 32px;
   border: none;
