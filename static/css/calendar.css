@@ -5,8 +5,8 @@
 }
 
 .logo {
-  width: 90px;
-  height: 36px;
+  width: 80px;
+  height: 35px;
   align-items: center;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .calendar-container {
-  padding: 0 0 40px;
+  padding: 0;
 }
 
 .bell {
@@ -49,13 +49,15 @@
 }
 
 .example-container {
+  height: 100vh; 
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 .example-container::-webkit-scrollbar {
   width: 6px;
 }
-
 .example-container::-webkit-scrollbar-track {
   background: transparent;
 }
