@@ -84,7 +84,7 @@ input::placeholder {
   width: 320px;
   height: 640px;
   overflow: auto;
-  background-color: rgba(255, 255, 255, 0.4); /* Black w/ opacity */
+  backdrop-filter: blur(10px);
 }
 
 /* Modal Content/Box */
